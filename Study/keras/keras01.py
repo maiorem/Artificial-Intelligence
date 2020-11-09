@@ -11,9 +11,7 @@ from tensorflow.keras.layers import Dense
 #2. 모델 구성
 # => 노드와 레이어로 튜닝
 model=Sequential()
-model.add(Dense(5, input_dim=1, activation='relu'))
-model.add(Dense(4))
-model.add(Dense(3))
+model.add(Dense(100000, input_dim=1, activation='relu'))
 model.add(Dense(2))
 model.add(Dense(1))
 
