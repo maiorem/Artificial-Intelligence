@@ -9,7 +9,8 @@
 2. 모델 구성    
 3. 컴파일, 훈련    
 4. 평가, 예측    
-[keras01](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras01.py)     
+
+[소스코드보기 : KERAS_01](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras01.py)     
 
 => DeepLearning은 정제된 x, y 값으로 최적의 weight(가중치)와 최소의 loss(손실)을 구하여 예측값을 찾는 것이다.
 => 기본적인 수식 : y=wx+b
