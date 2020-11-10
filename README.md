@@ -44,14 +44,17 @@ metrics : evaluate 함수에 기본적으로 loss가 반환되는 것 외에 구
 [R2](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras07_r2.py)         
 
 * 훈련 데이터와 테스트 데이터의 분리        
-x의 값이 y가 나오도록 훈련시키는 데이터와 이를 테스트하는 평가 데이터는 분리하는 것이 좋다.        
+-x의 값이 y가 나오도록 훈련시키는 데이터와 이를 테스트하는 평가 데이터는 분리하는 것이 좋다.        
 [train_test](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras05_train_test.py)       
 [train_test2](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras05_train_test2.py)         
-훈련을 검증된 데이터로 하도록 데이터를 또 따로 분리하여 설정할 수 있다.      
+-훈련을 검증된 데이터로 하도록 데이터를 또 따로 분리하여 설정할 수 있다.      
 validation_data => 검증 할 데이터를 직접 넣어 줌        
 validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용     
-[validation](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras09_val.py)       
-[validation2](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras09_val2.py)         
+[validation_data](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras09_val.py)       
+[validation_split](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras09_val2.py)         
+-사이킷런의 train_test_split 함수로 훈련 혹은 테스트 데이터 사이즈 비율을 지정해서 잘라 사용할 수 있음
+[train_test_split](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras11_train_test_split.py)       
+[train_test_split(validation 데이터를 또 분리한 경우)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras11_train_test_split2.py)       
 
 
 
