@@ -9,13 +9,13 @@ from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2, shuffle=True)
 x_train, x_val, y_train, y_val=train_test_split(x_train, y_train, test_size=0.2)
 
-
 #2. 모델 구성
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
 model=Sequential()
-model.add(Dense(500, input_dim=1))
+model.add(Dense(500, #input_dim=1, 
+                 input_shape=(1,)))
 model.add(Dense(1000))
 model.add(Dense(50))
 model.add(Dense(1))
