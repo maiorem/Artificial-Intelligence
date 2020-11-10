@@ -14,7 +14,7 @@
 => 기본적인 수식 : y=wx+b
 
 ### 2. 선형회귀(Linear Regression) 모델
-![linear](https://images.app.goo.gl/iqd8a4mFpDHVB8Mm9.png)     
+![linear](https://commons.wikimedia.org/wiki/File:Normdist_regression.png)     
 그림출처 : 위키백과     
 
 
