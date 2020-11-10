@@ -28,11 +28,11 @@ model.add(Dense(3))
 
 #컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train, y_train, epochs=100, validation_data=(x_val, y_val))
+model.fit(x_train, y_train, epochs=100, batch_size=5, validation_data=(x_val, y_val))
 
 #평가, 예측
 y_pred=model.predict(x_test)
-loss=model.evaluate(x_test, y_test)
+loss=model.evaluate(x_test, y_test, batch_size=5)
 
 print('결과 : ', y_pred)
 print('loss : ', loss)
