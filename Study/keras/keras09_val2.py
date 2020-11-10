@@ -1,34 +1,31 @@
-#실습 : R2를 음수가 아닌 0.5 이하로 줄이기
-#레이어는 7개 이상
+#validation
 
 import numpy as np
 
 #1. 데이터
-x_train=np.array([1,2,3,4,5,6,7,8,9,10]) #훈련 시킬 데이터
-y_train=np.array([1,2,3,4,5,6,7,8,9,10]) #훈련 시킬 데이터
-x_test=np.array([11,12,13,14,15]) #평가 할 데이터 : 훈련 데이터에 영향을 미쳐선 안됨
-y_test=np.array([11,12,13,14,15]) #평가 할 데이터
-x_pred=np.array([16,17,18]) #예측값을 낼 데이터
+x_train=np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]) 
+y_train=np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]) 
+# x_val=np.array([11,12,13,14,15]) 
+# y_val=np.array([11,12,13,14,15]) 
+# x_pred=np.array([16,17,18]) 
+x_test=np.array([16,17,18,19,20])
+y_test=np.array([16,17,18,19,20])
+
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
 #2. 모델 구성
 model=Sequential()
-model.add(Dense(5000, input_dim=1)) 
-model.add(Dense(10000)) 
-model.add(Dense(10000))
+model.add(Dense(300, input_dim=1)) 
+model.add(Dense(700)) 
 model.add(Dense(1000))
-model.add(Dense(2000))
-model.add(Dense(1000))
-model.add(Dense(7000))
-model.add(Dense(1000))
-model.add(Dense(3000))
 model.add(Dense(1))
 
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam', metrics=['mae']) 
-model.fit(x_train, y_train, epochs=100, batch_size=1) 
+model.fit(x_train, y_train, epochs=100, batch_size=1, validation_split=0.2) #train 데이터의 20%를 잘라 검증데이터로 잡음
+            #, validation_data=(x_val, y_val)) #검증 데이터를 넣어서 훈련
 
 
 #4. 평가, 예측
