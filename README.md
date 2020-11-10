@@ -15,7 +15,7 @@
 
 * 하이퍼 파라미터 튜닝이란?
  최적의 weight와 최소의 loss를 찾기 위해 모델 구조를 튜닝하는 것.
- 현재 모델에서 튜닝할 수 있는 것 :
+ 현재 모델에서 튜닝할 수 있는 것 :       
  -노드와 레이어 변형        
  -epochs(훈련시키는 횟수)        
  -batch_size 알맞게 쪼개기       
@@ -47,7 +47,6 @@ metrics : evaluate 함수에 기본적으로 loss가 반환되는 것 외에 구
 x의 값이 y가 나오도록 훈련시키는 데이터와 이를 테스트하는 평가 데이터는 분리하는 것이 좋다.        
 [train_test](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras05_train_test.py)       
 [train_test2](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras05_train_test2.py)
-
 훈련을 검증된 데이터로 하도록 데이터를 또 따로 분리하여 설정할 수 있다.      
 validation_data => 검증 할 데이터를 직접 넣어 줌        
 validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용     
