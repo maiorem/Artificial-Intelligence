@@ -1,5 +1,5 @@
-# r2=회귀지수 / max값은 1
-# 선형회귀에서 accuracy 대신 많이 씀
+#실습 : R2를 음수가 아닌 0.5 이하로 줄이기
+#레이어는 7개 이상
 
 import numpy as np
 
@@ -15,9 +15,15 @@ from tensorflow.keras.layers import Dense
 
 #2. 모델 구성
 model=Sequential()
-model.add(Dense(300, input_dim=1)) 
-model.add(Dense(700)) 
-model.add(Dense(1000))
+model.add(Dense(5000, input_dim=1)) 
+model.add(Dense(10)) 
+model.add(Dense(10000))
+model.add(Dense(10))
+model.add(Dense(2000))
+model.add(Dense(10))
+model.add(Dense(7000))
+model.add(Dense(10))
+model.add(Dense(3000))
 model.add(Dense(1))
 
 #3. 컴파일, 훈련
