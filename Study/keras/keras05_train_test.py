@@ -29,5 +29,5 @@ print("loss : ", loss)
 y_pred=model.predict(x_pred)
 print('예측 결과물 : \n',y_pred)
 
-#노드, 레이어 조절로 최적의 예측값 찾기
+#실습 : 노드, 레이어 조절로 최적의 예측값 찾기
 
