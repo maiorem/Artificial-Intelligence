@@ -69,7 +69,7 @@ output3_3=Dense(20, name='output3_3')(output3_2)
 output3_4=Dense(3, name='output3_4')(output3_3)
 
 ######### 모델 정의
-model=Model(inputs=[input1], outputs=[output1_3, output2_4, output3_4])
+model=Model(inputs=input1, outputs=[output1_3, output2_4, output3_4])
 
 model.summary()
 
