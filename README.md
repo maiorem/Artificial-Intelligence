@@ -25,7 +25,7 @@
 [반례](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras08_r2_bad.py)        
 
 
-### 2. 선형회귀(Linear Regression) 모델
+### 2. 선형회귀(Linear Regression) 
 ![linear](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Normdist_regression.png/300px-Normdist_regression.png)     
 (그림출처 : 위키백과)     
 
@@ -54,9 +54,33 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 [validation_split](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras09_val2.py)         
 -사이킷런의 train_test_split 함수로 훈련 혹은 테스트 데이터 사이즈 비율을 지정해서 잘라 사용할 수 있음
 [train_test_split](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras11_train_test_split.py)       
-[train_test_split(validation 데이터를 또 분리한 경우)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras11_train_test_split2.py)       
+[train_test_split(validation 데이터를 또 분리한 경우)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras11_train_test_split2.py) 
 
+* 다중 선형(MLP)     
+입력되는 x의 값이 여러개의 열로 된 다차원 데이터인 경우(input_dim이 1 이상)       
+[다중 입력 다중 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras12_mlp.py)       
+[다중 입력 1 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras12_mlp2.py)       
+[1 입력 다중 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras12_mlp3.py)          
+ => input_shape=(3,) 행무시, 열우선          
+ 만약에 자료구조가 100x10x3인 3차원 데이터를 입력한다면 input_shape=(10,3)          
+ => verbose : 값에 따라 훈련이 출력되는 양식이 다르다.               
 
+* 함수형 모델       
+-활성화 함수(activation) :           
+ => param의 값 = input(입력 차원의 수) * output(받는 노드의 수) + 노드 수(Bias의 연산값) (y=w(weight)x+b(bias))        
+ Sequential 모델이 모델 선언부터 하고 레이어를 추가하는 형태인 것과 달리,
+ Model로 선언한 함수형 모델은 인풋과 히든레이어, 아웃풋 레이어를 먼저 쌓고 모델을 선언하여 처음과 끝을 정해줌.        
+ [함수형 모델](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras15_function.py)         
+ => Sequential 모델과 함수형 모델의 summary를 비교하면 같은 자료 형태를 가지고 있음을 알 수 있다.
+ 
+* 앙상블 모델 : 두개 이상의 모델을 각각의 독립성을 지켜주면서 조화된 출력값이 나오도록 하는 모델 구조       
+=> [앙상블 기본형-다중 입력, 다중 출력(출력과 입력의 양이 같음)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble.py)            
+:: Concatenate, concatenate의 차이(사용법이 다르니 구분할 것!)                
+ concatenate([병합할 모델출력1, 병합할 모델출력2])           
+ Concatenate(axis=1)([병합할 모델출력1, 병합할 모델출력2])            
+=> [다중 입력, 다중 출력(출력이 입력보다 많은 경우)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble2.py)         
+=> **[다중 입력, 단일 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble3.py)**            
+=> [단일 입력, 다중 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble4.py)            
 
 
 
