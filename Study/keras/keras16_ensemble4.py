@@ -58,14 +58,14 @@ output1_1=Dense(30, name='output1_1')(output1)
 output1_2=Dense(100, name='output1_2')(output1_1)
 output1_3=Dense(3, name='output1_3')(output1_2)
 
-output2_1=Dense(15, name='output2_1')(output1)
-output2_2=Dense(2002, name='output2_2')(output2_1)
-output2_3=Dense(15, name='output2_3')(output2_2)
+output2_1=Dense(20, name='output2_1')(output1)
+output2_2=Dense(300, name='output2_2')(output2_1)
+output2_3=Dense(10, name='output2_3')(output2_2)
 output2_4=Dense(3, name='output2_4')(output2_3)
 
-output3_1=Dense(100, name='output3_1')(output1)
-output3_2=Dense(5000, name='output3_2')(output3_1)
-output3_3=Dense(200, name='output3_3')(output3_2)
+output3_1=Dense(10, name='output3_1')(output1)
+output3_2=Dense(80, name='output3_2')(output3_1)
+output3_3=Dense(20, name='output3_3')(output3_2)
 output3_4=Dense(3, name='output3_4')(output3_3)
 
 ######### 모델 정의
@@ -76,12 +76,12 @@ model.summary()
 
 #3. 컴파일, 훈련
 model.compile(loss="mse", optimizer="adam")
-model.fit([x1_train], [y1_train, y2_train, y3_train], epochs=100, batch_size=8, 
+model.fit(x1_train, [y1_train, y2_train, y3_train], epochs=1000, batch_size=5, 
         validation_split=0.3, verbose=1)
 
 
 
-result=model.evaluate(x1_test, [y1_test, y2_test, y3_test], batch_size=8)
+result=model.evaluate(x1_test, [y1_test, y2_test, y3_test], batch_size=5)
 
 print("result : ", result)
 
