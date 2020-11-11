@@ -81,7 +81,7 @@ model.fit([x1_train], [y1_train, y2_train, y3_train], epochs=100, batch_size=8,
 
 
 
-result=model.evaluate([x1_test], [y1_test, y2_test, y3_test], batch_size=8)
+result=model.evaluate(x1_test, [y1_test, y2_test, y3_test], batch_size=8)
 
 print("result : ", result)
 
