@@ -27,24 +27,26 @@ x_train, x_val, y_train, y_val=train_test_split(x_train, y_train, test_size=0.2)
 from tensorflow.keras.models import Sequential, Model 
 from tensorflow.keras.layers import Dense, Input
 
-# Sequential 모델
-model=Sequential()
-model.add(Dense(5, input_shape=(3,), activation='relu')) 
-# 활성화함수(activation) 디폴트는 linear
-model.add(Dense(4, activation='relu'))
-model.add(Dense(3, activation='relu'))
-model.add(Dense(1))
+# # Sequential 모델
+# model=Sequential()
+# model.add(Dense(5, input_shape=(3,), activation='relu')) 
+# # 활성화함수(activation) 디폴트는 linear
+# model.add(Dense(4, activation='relu'))
+# model.add(Dense(3, activation='relu'))
+# model.add(Dense(1))
 
-# # 함수형 모델
-# input1=Input(shape=(3,))
-# dense1=Dense(5, activation='relu')(input1)
-# dense2=Dense(4, activation='relu')(dense1)
-# dense3=Dense(3, activation='relu')(dense2)
-# output1=Dense(1)(dense3) #선형회귀이기 때문에 마지막은 linear여야 함
-# model=Model(inputs=input1, outputs=output1)
+# 함수형 모델
+input1=Input(shape=(3,))
+dense1=Dense(5, activation='relu')(input1)
+dense2=Dense(4, activation='relu')(dense1)
+dense3=Dense(3, activation='relu')(dense2)
+output1=Dense(1)(dense3) #선형회귀이기 때문에 마지막은 linear여야 함
+model=Model(inputs=input1, outputs=output1)
 
 model.summary()
-## param의 값 = 노드 수 * input의 차원 + 노드 수
+## param의 값 = input(입력 차원의 수) * output(받는 노드의 수) + 노드 수(Bias의 연산값)
+## y=wx+b
+
 
 '''
 #3. 컴파일, 훈련
