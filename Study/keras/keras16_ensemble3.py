@@ -54,13 +54,13 @@ from tensorflow.keras.layers import Concatenate, concatenate
 # merge1=concatenate([output1, output2])
 merge1=Concatenate(axis=1)([output1, output2])
 middle1=Dense(30, name='middle1')(merge1)
-middle1=Dense(100, name='middle2')(middle1)
-middle1=Dense(50, name='middle3')(middle1)
+middle2=Dense(100, name='middle2')(middle1)
+middle3=Dense(500, name='middle3')(middle2)
 
 ######## output 모델 구성 (분기)
-output1_1=Dense(500, name='output1_1')(middle1)
-output1_2=Dense(3000, name='output1_2')(output1_1)
-output1_3=Dense(50, name='output1_3')(output1_2)
+output1_1=Dense(200, name='output1_1')(middle2)
+output1_2=Dense(80, name='output1_2')(output1_1)
+output1_3=Dense(10, name='output1_3')(output1_2)
 output1_4=Dense(3, name='output1_4')(output1_3)
 
 # output2_1=Dense(15, name='output2_1')(middle1)
@@ -81,12 +81,12 @@ model.summary()
 
 #3. 컴파일, 훈련
 model.compile(loss="mse", optimizer="adam")
-model.fit([x1_train, x2_train], y1_train, epochs=100, batch_size=8, 
-        validation_split=0.3, verbose=1)
+model.fit([x1_train, x2_train], y1_train, epochs=100, batch_size=5, 
+        validation_split=0.3, verbose=0)
 
 
 
-result=model.evaluate([x1_test, x2_test], y1_test, batch_size=8)
+result=model.evaluate([x1_test, x2_test], y1_test, batch_size=5)
 
 print("mse : ", result)
 
