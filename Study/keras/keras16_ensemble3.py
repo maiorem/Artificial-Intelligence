@@ -24,9 +24,11 @@ from tensorflow.keras.layers import Dense, Input
 #모델1
 input1=Input(shape=(3,))
 dense1=Dense(50, activation='relu', name='dense1')(input1)
-dense2=Dense(400, activation='relu', name='dense2')(dense1)
-dense3=Dense(30, activation='relu', name='dense3')(dense2)
-output1=Dense(3, name='output1')(dense3) 
+dense2=Dense(100, activation='relu', name='dense2')(dense1)
+dense3=Dense(300, activation='relu', name='dense3')(dense2)
+dense4=Dense(1000, activation='relu', name='dense4')(dense3)
+dense5=Dense(500, activation='relu', name='dense5')(dense4)
+output1=Dense(3, name='output1')(dense5) 
 
 # model1=Model(inputs=input1, outputs=output1)
 # model1.summary()
@@ -34,8 +36,11 @@ output1=Dense(3, name='output1')(dense3)
 #모델2
 input2=Input(shape=(3,))
 dense2_1=Dense(50, activation='relu', name='dense2_1')(input2)
-dense2_2=Dense(100, activation='relu', name='dense2_2')(dense2_1)
-output2=Dense(3, name='output2')(dense2_2) 
+dense2_2=Dense(700, activation='relu', name='dense2_2')(dense2_1)
+dense2_3=Dense(1000, activation='relu', name='dense2_3')(dense2_2)
+dense2_4=Dense(5000, activation='relu', name='dense2_4')(dense2_3)
+dense2_5=Dense(100, activation='relu', name='dense2_5')(dense2_4)
+output2=Dense(3, name='output2')(dense2_5) 
 
 # model2=Model(inputs=input2, outputs=output2)
 # model2.summary()
@@ -49,12 +54,12 @@ from tensorflow.keras.layers import Concatenate, concatenate
 # merge1=concatenate([output1, output2])
 merge1=Concatenate(axis=1)([output1, output2])
 middle1=Dense(30, name='middle1')(merge1)
-middle2=Dense(500, name='middle2')(middle1)
-middle3=Dense(20, name='middle3')(middle2)
+middle2=Dense(5000, name='middle2')(middle1)
+middle3=Dense(500, name='middle3')(middle2)
 
 ######## output 모델 구성 (분기)
-output1_1=Dense(30, name='output1_1')(middle1)
-output1_2=Dense(100, name='output1_2')(output1_1)
+output1_1=Dense(300, name='output1_1')(middle1)
+output1_2=Dense(1000, name='output1_2')(output1_1)
 output1_3=Dense(3, name='output1_3')(output1_2)
 
 # output2_1=Dense(15, name='output2_1')(middle1)
@@ -75,12 +80,12 @@ model.summary()
 
 #3. 컴파일, 훈련
 model.compile(loss="mse", optimizer="adam")
-model.fit([x1_train, x2_train], [y1_train], epochs=100, batch_size=8, 
+model.fit([x1_train, x2_train], [y1_train], epochs=100, batch_size=5, 
         validation_split=0.3, verbose=1)
 
 
 
-result=model.evaluate([x1_test, x2_test], [y1_test], batch_size=8)
+result=model.evaluate([x1_test, x2_test], [y1_test], batch_size=5)
 
 print("mse : ", result)
 
