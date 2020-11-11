@@ -53,8 +53,8 @@ from tensorflow.keras.layers import Concatenate, concatenate
 # merge1=concatenate([output1, output2])
 merge1=Concatenate(axis=1)([output1, output2])
 middle1=Dense(30, name='middle1')(merge1)
-middle2=Dense(500, name='middle2')(middle1)
-middle3=Dense(20, name='middle3')(middle2)
+middle1=Dense(500, name='middle2')(middle1)
+middle1=Dense(20, name='middle3')(middle1)
 
 ######## output 모델 구성 (분기)
 output1_1=Dense(30, name='output1_1')(middle1)
@@ -62,8 +62,8 @@ output1_2=Dense(100, name='output1_2')(output1_1)
 output1_3=Dense(3, name='output1_3')(output1_2)
 
 output2_1=Dense(15, name='output2_1')(middle1)
-output2_2=Dense(200, name='output2_2')(output2_1)
-output2_3=Dense(15, name='output2_3')(output2_2)
+output2_2=Dense(2000, name='output2_2')(output2_1)
+output2_3=Dense(150, name='output2_3')(output2_2)
 output2_4=Dense(3, name='output2_4')(output2_3)
 
 ######### 모델 정의

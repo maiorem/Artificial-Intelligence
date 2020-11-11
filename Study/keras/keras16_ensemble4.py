@@ -50,8 +50,8 @@ output1=Dense(3, name='output1')(dense3)
 # # merge1=concatenate([output1, output2])
 # merge1=Concatenate(axis=1)([output1, output2])
 # middle1=Dense(30, name='middle1')(merge1)
-# middle2=Dense(500, name='middle2')(middle1)
-# middle3=Dense(20, name='middle3')(middle2)
+# middle1=Dense(500, name='middle2')(middle1)
+# middle1=Dense(20, name='middle3')(middle1)
 
 ######## output 모델 구성 (분기)
 output1_1=Dense(30, name='output1_1')(output1)
@@ -59,13 +59,13 @@ output1_2=Dense(100, name='output1_2')(output1_1)
 output1_3=Dense(3, name='output1_3')(output1_2)
 
 output2_1=Dense(15, name='output2_1')(output1)
-output2_2=Dense(200, name='output2_2')(output2_1)
+output2_2=Dense(2002, name='output2_2')(output2_1)
 output2_3=Dense(15, name='output2_3')(output2_2)
 output2_4=Dense(3, name='output2_4')(output2_3)
 
 output3_1=Dense(100, name='output3_1')(output1)
-output3_2=Dense(500, name='output3_2')(output3_1)
-output3_3=Dense(20, name='output3_3')(output3_2)
+output3_2=Dense(5000, name='output3_2')(output3_1)
+output3_3=Dense(200, name='output3_3')(output3_2)
 output3_4=Dense(3, name='output3_4')(output3_3)
 
 ######### 모델 정의
