@@ -86,3 +86,24 @@ model.fit([x1_train, x2_train], [y1_train, y2_train, y3_train], epochs=100, batc
 result=model.evaluate([x1_test, x2_test], [y1_test, y2_test, y3_test], batch_size=8)
 
 print("result : ", result)
+
+
+
+y1_pred, y2_pred, y3_pred=model.predict([x1_test, x2_test])
+
+
+from sklearn.metrics import mean_squared_error 
+def RMSE(y1_test, y1_pred) :
+    return np.sqrt(mean_squared_error(y1_test, y1_pred))
+
+print("RMSE1 : ", RMSE(y1_test, y1_pred))
+print("RMSE2 : ", RMSE(y2_test, y2_pred))
+print("RMSE3 : ", RMSE(y3_test, y3_pred))
+
+from sklearn.metrics import r2_score 
+r2_1=r2_score(y1_test, y1_pred)
+r2_2=r2_score(y2_test, y2_pred)
+r2_3=r2_score(y3_test, y3_pred)
+print("R2_1 : ", r2_1)
+print("R2_2 : ", r2_2)
+print("R2_3 : ", r2_3)
