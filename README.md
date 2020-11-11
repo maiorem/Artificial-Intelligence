@@ -75,6 +75,9 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  
 * 앙상블 모델 : 두개 이상의 모델을 각각의 독립성을 지켜주면서 조화된 출력값이 나오도록 하는 모델 구조       
 => [앙상블 기본형-다중 입력, 다중 출력(출력과 입력의 양이 같음)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble.py)            
+:: Concatenate, concatenate의 차이(사용법이 다르니 구분할 것!)                
+- concatenate([병합할 모델출력1, 병합할 모델출력2])           
+- Concatenate(axis=1)([병합할 모델출력1, 병합할 모델출력2])            
 => [다중 입력, 다중 출력(출력이 입력보다 많은 경우)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble2.py)         
 => **[다중 입력, 단일 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble3.py)**            
 => [단일 입력, 다중 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble4.py)            
