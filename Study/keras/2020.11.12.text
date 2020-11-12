@@ -1,6 +1,0 @@
-DNN : Deep Neural Network => 은닉 레이어가 2개 이상인 신경망
-RNN : Recurrent Neural Network => 순환신경망. 순차적인 데이터 처리 => Time Series 시계열
-
-#params = 4 * ((size_of_input + 1) * size_of_output + size_of_output^2)  = 4 * ((1+1) * 10 + 100) = 480
-# = 4 * ((자른 입력 갯수+bias+노드갯수) * 노드갯수 = 4 * (1+1+10) * 10 = 480
-# 시계열은 연산이 많고 그만큼 연산을 잘 하지만 속도가 느림
