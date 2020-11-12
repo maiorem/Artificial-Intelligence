@@ -1,3 +1,5 @@
+#과제 : 아래 소스 분석해올것!
+
 import numpy as np 
 dataset=np.array(range(1,11))
 size=5
