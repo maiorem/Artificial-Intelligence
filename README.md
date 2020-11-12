@@ -80,7 +80,31 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  Concatenate(axis=1)([병합할 모델1, 병합할 모델2])            
 => [다중 입력, 다중 출력(출력이 입력보다 많은 경우)](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble2.py)         
 => **[다중 입력, 단일 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble3.py)**            
-=> [단일 입력, 다중 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble4.py)            
+=> [단일 입력, 다중 출력](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras16_ensemble4.py)         
 
-
-
+* RNN(Recurrent Neural Network 순환신경망) 모델 : 순차적인 데이터 처리           
+=> **LSTM(Long-Short-Term Memory)**            
+ RNN에서 가장 성능이 좋음.        
+ 하나의 데이터에서 다음 데이터를 받을 때마다 연산을 하기 때문에 입력을 어떻게 자를 것인지 설정해줘야 한다.
+ 예를 들어 [2,3,4]가 있고 이를 하나씩 잘라준다고 하면 2에서 3으로 넘어갈 때 +1, 3에서 4로 갈때 +1, 그렇게 y=[5]가 나오도록 함. 때문에 x=[2,3,4]를 쪼개서 [[2],[3],[4]]의 형태로 변환을 해줘야 한다.       
+ 형변환 함수 : reshape           
+ [LSTM 기본형](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras17_LSTM.py)         
+ [LSTM의 input_shape를 length와 dim으로 바꾸기](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras17_LSTM2.py)            
+ [좀 더 다양한 수식을 하는 자료로 LSTM 구성](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras17_LSTM3_scale.py)          
+-> LSTM외에도 RNN에는 Simple RNN과 GRU 등이 있다. 각각을 이용해서 성능 비교하기.           
+ 
+ [SimpleRNN : 모델 분석](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras18_simpleRNN.py)             
+ [SimpleRNN : LSTM과 비교](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras18_simpleRNN2_scale.py)         
+ [GRU : 모델 분석](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras19_GRU.py)          
+ [GRU : LSTM과 SimpleRnn과 성능 비교](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras19_GRU2_scale.py)          
+ -> 함수형 모델로 LSTM 구성        
+ [함수형 모델 LSTM](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras20_LSTM_hamsu.py)           
+ => **조기종료 함수 : Early Stopping**                
+ : 훈련을 시키는 도중, 가장 낮은 loss 값이 나왔을 때 훈련을 멈추고 결과값을 출력하도록 하는 함수. patience 값을 조절하여 낮은 loss보다 더 낮은 loss를 찾기 위해 현재의 저장값을 넘길 수 있다.         
+ [Early Stopping](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras21_LSTM_earlyStopping.py)             
+ => ?? : LSTM을 레이어에 두개씩 쓰면 성능이 더 좋아지지 않을까?           
+ [LSTM을 연속해서 썼을 때의 문제점과 해결 방법](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras22_Return_sequence.py)            
+ : # LSTM은 2차원을 3차원으로 형변환하여 입력하였으므로 3차원이지만 return_sequences가 디폴트로 False로 주어져 있기에 마지막 출력 시퀀스에 맞춘 차원을 반환한다.               
+때문에 LSTM이 한번 더 나오면 요구되는 입력값이 3차원인데 2차원만 입력되는 경우가 발생함.          
+그럴 땐 앞에 쓴 LSTM 함수의 return_sequence를 True로 바꿔 본연의 차원인 3차원을 되찾고, 그대로 입력하도록 만든다.                
+         
