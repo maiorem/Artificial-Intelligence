@@ -14,11 +14,10 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 
 model=Sequential()
-model.add(LSTM(40, activation='relu', input_length=3, input_dim=1))
-model.add(Dense(100, activation='relu'))
-model.add(Dense(500, activation='relu'))
-model.add(Dense(100, activation='relu'))
+model.add(LSTM(200, activation='relu', input_shape=(3,1), return_sequences=True))
+model.add(LSTM(150, activation='relu'))
 model.add(Dense(80, activation='relu'))
+model.add(Dense(30, activation='relu'))
 model.add(Dense(20, activation='relu'))
 model.add(Dense(1))
 
@@ -26,10 +25,14 @@ model.summary()
 
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x, y, epochs=400, batch_size=1)
+
+
+from tensorflow.keras.callbacks import EarlyStopping
+
+early_stopping=EarlyStopping(monitor='loss', patience=50, mode='min')
+
+model.fit(x, y, epochs=10000, batch_size=1, callbacks=[early_stopping])
 
 y_predict=model.predict(x_input)
-loss=model.evaluate(x, y, batch_size=1)
 
 print("y_predict : ", y_predict)
-print("loss : ", loss)

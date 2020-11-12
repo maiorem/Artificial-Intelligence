@@ -27,7 +27,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, SimpleRNN, GRU
 
 model=Sequential()
-#model.add(LSTM(20, activation='relu', input_shape=(3,1)))   
 model.add(GRU(10, activation='relu', input_length=3, input_dim=1))   
 model.add(Dense(30))
 model.add(Dense(100))
