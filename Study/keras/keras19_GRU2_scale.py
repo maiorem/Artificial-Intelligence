@@ -1,3 +1,5 @@
+# GRU 모델에 더 큰 스케일의 자료가 들어간 경우과 LSTM, SimpleRNN, GRU의 성능 비교
+
 import numpy as np     
 
 x=np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
