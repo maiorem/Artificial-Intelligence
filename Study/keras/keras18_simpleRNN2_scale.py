@@ -1,3 +1,5 @@
+#더 많은 데이터로 SimpleRNN을 구축하고 LSTM과 비교해보기.
+
 import numpy as np     
 
 x=np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
