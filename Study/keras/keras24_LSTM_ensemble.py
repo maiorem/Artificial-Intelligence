@@ -1,3 +1,6 @@
+# 다음 x1, x2, y 데이터를 LSTM으로 앙상블 모델 만들기. 
+# 원하는 결과값은 85, 95. 이게 나오도록 튜닝.
+
 from numpy import array
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input, LSTM, concatenate
