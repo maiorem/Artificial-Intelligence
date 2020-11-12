@@ -92,8 +92,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  [LSTM의 input_shape를 length와 dim으로 바꾸기](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras17_LSTM2.py)            
  [좀 더 다양한 수식을 하는 자료로 LSTM 구성](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras17_LSTM3_scale.py)          
 -> LSTM외에도 RNN에는 Simple RNN과 GRU 등이 있다. 각각을 이용해서 성능 비교하기.           
- 
- [SimpleRNN : 모델 분석](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras18_simpleRNN.py)             
+  [SimpleRNN : 모델 분석](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras18_simpleRNN.py)             
  [SimpleRNN : LSTM과 비교](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras18_simpleRNN2_scale.py)         
  [GRU : 모델 분석](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras19_GRU.py)          
  [GRU : LSTM과 SimpleRnn과 성능 비교](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras19_GRU2_scale.py)          
