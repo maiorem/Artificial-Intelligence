@@ -23,35 +23,34 @@ x2_predict=x2_predict.reshape(1,3,1)
 
 input1_1=Input(shape=(3,1))
 dense1_2=LSTM(100, activation='relu')(input1_1)
-dense1_3=Dense(50, activation='relu')(dense1_2)
+dense1_3=Dense(80, activation='relu')(dense1_2)
 dense1_4=Dense(30, activation='relu')(dense1_3)
 dense1_5=Dense(10, activation='relu')(dense1_4)
 output1=Dense(1)(dense1_5)
 
 input2_1=Input(shape=(3,1))
-dense2_2=LSTM(800, activation='relu')(input2_1)
-dense2_3=Dense(60, activation='relu')(dense2_2)
-dense2_4=Dense(30, activation='relu')(dense2_3)
+dense2_2=LSTM(150, activation='relu')(input2_1)
+dense2_3=Dense(100, activation='relu')(dense2_2)
+dense2_4=Dense(50, activation='relu')(dense2_3)
 dense2_5=Dense(10, activation='relu')(dense2_4)
 output2=Dense(1)(dense2_5)
 
 merge=concatenate([output1, output2])
-middle1=Dense(40)(merge)
-middle2=Dense(20)(middle1)
-output3=Dense(1)(middle2)
+middle1=Dense(100)(merge)
+middle2=Dense(50)(middle1)
+output3_1=Dense(20)(middle2)
+output3_2=Dense(10)(output3_1)
+output3_3=Dense(1)(output3_2)
 
 
-model=Model(inputs=[input1_1, input2_1], outputs=output3)
-
-model.summary()
-
+model=Model(inputs=[input1_1, input2_1], outputs=output3_3)
 
 model.compile(loss='mse', optimizer='adam')
 
 from tensorflow.keras.callbacks import EarlyStopping
 early_stopping=EarlyStopping(monitor='loss', patience=100, mode='min')
 
-model.fit([x1_lstm, x2_lstm], y, epochs=100, batch_size=1, callbacks=[early_stopping])
+model.fit([x1_lstm, x2_lstm], y, epochs=10000, batch_size=1, callbacks=[early_stopping])
 
 y1_predict=model.predict([x1_predict, x2_predict])
 y2_predict=model.predict([x2_predict, x1_predict])
