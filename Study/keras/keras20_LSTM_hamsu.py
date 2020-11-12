@@ -1,3 +1,5 @@
+#함수형 모델로 LSTM 구성하기
+
 import numpy as np     
 
 x=np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
