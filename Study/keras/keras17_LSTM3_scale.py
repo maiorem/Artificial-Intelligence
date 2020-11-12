@@ -1,3 +1,5 @@
+#더 많은 자료를 LSTM으로 튜닝하기.
+
 import numpy as np     
 
 x=np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
@@ -29,7 +31,5 @@ model.compile(loss='mse', optimizer='adam')
 model.fit(x, y, epochs=400, batch_size=1)
 
 y_predict=model.predict(x_input)
-loss=model.evaluate(x, y, batch_size=1)
 
 print("y_predict : ", y_predict)
-print("loss : ", loss)
