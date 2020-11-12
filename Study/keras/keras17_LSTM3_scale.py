@@ -14,19 +14,19 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 
 model=Sequential()
-model.add(LSTM(40, activation='relu', input_length=3, input_dim=1))
-model.add(Dense(100, activation='relu'))
-model.add(Dense(500, activation='relu'))
-model.add(Dense(100, activation='relu'))
-model.add(Dense(80, activation='relu'))
+model.add(LSTM(20, activation='relu', input_length=3, input_dim=1))
+model.add(Dense(50, activation='relu'))
+model.add(Dense(300, activation='relu'))
+model.add(Dense(800, activation='relu'))
 model.add(Dense(20, activation='relu'))
+model.add(Dense(5, activation='relu'))
 model.add(Dense(1))
 
 model.summary()
 
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x, y, epochs=400, batch_size=1)
+model.fit(x, y, epochs=500, batch_size=1)
 
 y_predict=model.predict(x_input)
 loss=model.evaluate(x, y, batch_size=1)
