@@ -1,6 +1,5 @@
-# DNN : Deep Neural Network => 은닉 레이어가 2개 이상인 신경망
-# RNN : Recurrent Neural Network => 순환신경망. 순차적인 데이터 처리 => Time Series 시계열
-# LSTM : RNN에서 가장 성능 좋은 기법
+
+#RNN 기법 중 하나인 GRU 코드
 
 #1. 데이터
 import numpy as np 
@@ -11,14 +10,7 @@ y=np.array([4,5,6,7]) #(4,)
 print("x.shape : ", x.shape)
 print("y.shape : ", y.shape)
 
-x=x.reshape(x.shape[0], x.shape[1], 1)  #x의 자료를 하나씩 잘라 연산하도록([[[1],[2],[3]], [[2],[3],[4]],[[3],[4],[5]],[[4],[5],[6]]]) / (4,3)=>(4,3,1)로 변환 
-                                        #LSTM 행x열x몇개씩 잘라 작업하는지(자르는 크기) 
-
-# from sklearn.model_selection import train_test_split
-
-# x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.3)
-
-#x=x.reshape(4,3,1)
+x=x.reshape(x.shape[0], x.shape[1], 1) 
 print("x.shape : ", x.shape)
 
 
@@ -34,10 +26,6 @@ model.add(Dense(30))
 model.add(Dense(1))
 
 model.summary()
-#simple RNN params =   = (노드 * 노드) + (input_dim * 노드) + biases  = (10*10)+(1*10) + 10= 120
-                    # = (input_dim + 노드) * 노드 + biases = (1 + 10) * 10 + 10 = 120
-                
-
 
 '''
 model.compile(loss='mse', optimizer='adam')
