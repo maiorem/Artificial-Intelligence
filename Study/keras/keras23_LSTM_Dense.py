@@ -1,3 +1,5 @@
+# 여태 LSTM으로 구성한 모델을 Dense로 만들어서 성능 비교하기
+
 import numpy as np     
 
 x=np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6],
