@@ -29,8 +29,7 @@ model=load_model('./save/keras30.h5', custom_objects={'input_shape':(4,1)})
 model.add(Dense(5, name='plusDense1'))
 model.add(Dense(1, name='plusDense2'))
 
-#ValueError: All layers added to a Sequential model should have unique names. Name "dense" is already the name of a layer in this model. Update the `name` argument to pass a unique name.
-#불러온 모델 레이어 이름과 새로 덧붙여진 레이어 이름이 같아서 뜨는 오류
+
 
 model.summary()
 
