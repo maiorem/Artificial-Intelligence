@@ -21,7 +21,7 @@ x_predict=x_predict.reshape(1,3)
 x_predict2=x_predict2.reshape(1,3)
 
 
-#데이터 전처리
+#데이터 전처리 1. MinMax Scaler
 from sklearn.preprocessing import MinMaxScaler
 
 scaler=MinMaxScaler()
