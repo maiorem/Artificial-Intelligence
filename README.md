@@ -25,7 +25,10 @@
 [반례](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras08_r2_bad.py)        
 
 ### 2. 모델 SAVE와 LOAD, 시각화
-
+ [적절한 값이 나오는 모델 저장하기](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras30_save.py)            
+ [저장한 모델 불러와서 커스텀하기](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras31_load.py)         
+ [모델링 시각화-Matplotlib](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras32_hist2_graph.py)                
+ [모델링 시각화-Tensorboard](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras33_tensorboard.py)            
 
 ### 3. 선형회귀(Linear Regression) 
 ![linear](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Normdist_regression.png/300px-Normdist_regression.png)     
