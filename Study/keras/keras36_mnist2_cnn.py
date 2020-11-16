@@ -27,14 +27,14 @@ x_predict=x_test[:10, :, :]
 #1. 데이터
 #다중 분류 데이터 전처리 (1).OneHotEncoding
 from tensorflow.keras.utils import to_categorical
-y_train=to_categorical(y_train)
+y_train=to_categorical(y_train) #총 10개의 인덱스 카테고리가 있으므로 column은 10이 된다.
 y_test=to_categorical(y_test)
 
 # print(y_train.shape, y_test.shape) #(60000,10), (10000,10)
 # print(y_train[0])
 
 #MinMaxScaler의 효과를 주는 형변환
-x_train=x_train.reshape(60000,28,28,1).astype('float32')/255.
+x_train=x_train.reshape(60000,28,28,1).astype('float32')/255. #픽셀의 최대값은 255이므로
 x_test=x_test.reshape(10000,28,28,1).astype('float32')/255.
 
 # print(x_train[0])
@@ -82,7 +82,7 @@ x_predict=x_predict.reshape(10, 28, 28,1).astype('float32')/255.
 
 
 y_predict=model.predict(x_predict)
-y_predict=np.argmax(y_predict, axis=1) #One hot encoding의 decoding
+y_predict=np.argmax(y_predict, axis=1) #One hot encoding의 decoding은 numpy의 argmax를 사용한다.
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)
