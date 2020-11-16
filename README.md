@@ -105,5 +105,36 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  [LSTM을 연속해서 썼을 때의 문제점과 해결 방법](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras22_Return_sequence.py)            
  : # LSTM은 2차원을 3차원으로 형변환하여 입력하였으므로 3차원이지만 return_sequences가 디폴트로 False로 주어져 있기에 마지막 출력 시퀀스에 맞춘 차원을 반환한다.               
 때문에 LSTM이 한번 더 나오면 요구되는 입력값이 3차원인데 2차원만 입력되는 경우가 발생함.          
-그럴 땐 앞에 쓴 LSTM 함수의 return_sequence를 True로 바꿔 본연의 차원인 3차원을 되찾고, 그대로 입력하도록 만든다.                
+그럴 땐 앞에 쓴 LSTM 함수의 return_sequence를 True로 바꿔 본연의 차원인 3차원을 되찾고, 그대로 입력하도록 만든다.              
+
+* 모델 저장과 불러오기, 시각화
+
+* CNN모델, 다중 분류 모델
+ *CNN(Convolution Neural Network) 모델의 파라미터           
+ #filter : output. 다음 layer에 10개를 던져준다.                    
+ #kernel_size : 이미지를 잘라 연산할 크기 (작업크기)                 
+ #strides (디폴트=1) : convolution layer 수행시 한번에 이동할 칸                
+ #padding 디폴트는 valid:적용하지 않음 / same : 가장자리에 padding을 씌워 데이터 손실을 막음 (입력 shape가 그대로 들어감. 픽셀은 보통 0으로 채운다)               
+ #input_shape=(rows, cols, channels)            
+ #입력 형식 : batch_size, rows, cols, channels              
+ [CNN 모델의 기본 형식](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras35_cnn1.py)        
+ Conv2D(filter, (kernel_size가로, kernel_size세로), input_shape=(원본 가로, 원본 세로, 채널)        
+ CNN 모델은 입력되는 차원과 출력되는 차원이 동일하므로 LSTM처럼 곧바로 DENSE와 연결시켜 줄 수 없다.      
+ 사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦         
+ 
+ * mnist를 활용한 분류 모델 구현하기        
+ mnist란? 훈련용 데이터셋            
+ [mnist로 데이터 분류 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist1_imshow.py)           
+   * One Hot Encoding       
+   => 데이터를 숫자로 줬을 때, feature의 중요도와 별개로 숫자가 더 큰 값을 컴퓨터가 크다고 판단하는 수가 있다. 그럴 때, True면 1, False면 0으로 값을 줘서 사용자가 원하는 방식으로 컴퓨터가 데이터를 읽도록 출력값을 인코딩 하는 기법 중 하나를 One Hot Encoding이라고 함. 인코딩함으로써 1에 해당하는 분류값을 반환한다. 당연히 y값을 인코딩한다.        
+   다중 분류의 몇가지 규칙      
+      1. 다중 분류의 output layer의 활성화함수는 **softmax**를 쓴다.      
+      2. 다중분류에선 반드시 loss를 **categorical_crossentropy**로 쓴다.           
+   
+    softmax함수는 확률을 0에서 1 사이의 실수로 두고, 한 벡터의 모든 원소의 합이 1이 되도록 하므로 accuracy를 담아낼 수 있다.                     
+    [CNN 다중 분류 모델](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist2_cnn.py)         
+  
+  
+ 
+ 
          
