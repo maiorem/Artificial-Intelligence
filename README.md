@@ -123,7 +123,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦          
 
    
-### 3. 다중 분류(Softmax Regression)    
+### 3. 다중 분류(Multiple Classification)    
 * mnist를 활용한 분류 모델 구현하기        
  mnist란? 훈련용 데이터셋            
  [mnist로 데이터 분류 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist1_imshow.py)           
