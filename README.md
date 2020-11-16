@@ -136,7 +136,8 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
       1. 다중 분류의 output layer의 활성화함수는 **softmax**를 쓴다.      
       2. 다중분류에선 반드시 loss를 **categorical_crossentropy**로 쓴다.           
    
-   softmax :  입력받은 값을 0~1사이의 값으로 모두 정규화하며 출력 값들의 총합은 항상 1이 되는 활성화 함수이다.                      
+   softmax :  입력받은 값을 0~1사이의 값으로 모두 정규화하며 출력 값들의 총합은 항상 1이 되는 활성화 함수이다.        
+   categorical_crossentropy : 다중분류손실함수. 출력값이 one-hot-encoding 된 결과로 나오므로 y값은 무조건 one-hot encoding해서 넣어줘야 함.          
    [CNN 다중 분류 모델](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist2_cnn.py)         
   
   
