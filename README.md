@@ -24,8 +24,10 @@
 * 무조건 노드와 레이어가 많은 것이 좋은가?        
 [반례](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras08_r2_bad.py)        
 
+### 2. 모델 SAVE와 LOAD, 시각화
 
-### 2. 선형회귀(Linear Regression) 
+
+### 3. 선형회귀(Linear Regression) 
 ![linear](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Normdist_regression.png/300px-Normdist_regression.png)     
 (그림출처 : 위키백과)     
 
@@ -107,8 +109,6 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 때문에 LSTM이 한번 더 나오면 요구되는 입력값이 3차원인데 2차원만 입력되는 경우가 발생함.          
 그럴 땐 앞에 쓴 LSTM 함수의 return_sequence를 True로 바꿔 본연의 차원인 3차원을 되찾고, 그대로 입력하도록 만든다.              
 
-* 모델 저장과 불러오기, 시각화
-
 * CNN모델
   * CNN(Convolution Neural Network) 모델의 파라미터           
  #filter : output. 다음 layer에 10개를 던져준다.                    
@@ -123,7 +123,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦          
 
    
-### 3. 다중 분류(Multiple Classification)    
+### 4. 다중 분류(Multiple Classification)    
 * mnist를 활용한 분류 모델 구현하기        
  mnist란? 훈련용 데이터셋            
  [mnist로 데이터 분류 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist1_imshow.py)           
