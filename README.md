@@ -133,8 +133,8 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 * One Hot Encoding       
    => 데이터를 숫자로 줬을 때, feature의 중요도와 별개로 숫자가 더 큰 값을 컴퓨터가 크다고 판단하는 수가 있다. 그럴 때, True면 1, False면 0으로 값을 줘서 사용자가 원하는 방식으로 컴퓨터가 데이터를 읽도록 출력값을 인코딩 하는 기법 중 하나를 One Hot Encoding이라고 함. 인코딩함으로써 인덱스가 1에 해당하는 분류값을 반환한다. 당연히 y값을 인코딩한다.        
    다중 분류의 몇가지 규칙      
-      1. 다중 분류의 output layer의 활성화함수는 **softmax**를 쓴다.      
-      2. 다중분류에선 반드시 loss를 **categorical_crossentropy**로 쓴다.           
+     1. 다중 분류의 output layer의 활성화함수는 **softmax**를 쓴다.      
+     2. 다중분류에선 반드시 loss를 **categorical_crossentropy**로 쓴다.           
    
    softmax :  입력받은 값을 0~1사이의 값으로 모두 정규화하며 출력 값들의 총합은 항상 1이 되는 활성화 함수이다.        
    categorical_crossentropy : 다중분류손실함수. 출력값이 one-hot-encoding 된 결과로 나오므로 y값은 무조건 one-hot encoding해서 넣어줘야 함.          
