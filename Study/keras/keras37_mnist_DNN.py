@@ -46,12 +46,14 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten
 
 model=Sequential()
-model.add(Dense(3, activation='relu', input_shape=(28*28,)))
-model.add(Dense(10))
-model.add(Dense(20))
-model.add(Dense(30))
-model.add(Dense(20))
-model.add(Dense(10)) 
+model.add(Dense(2000, activation='relu', input_shape=(28*28,)))
+model.add(Dense(4000, activation='relu'))
+model.add(Dense(3000, activation='relu'))
+model.add(Dense(200, activation='relu'))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(80, activation='relu'))
+model.add(Dense(30, activation='relu'))
+model.add(Dense(10, activation='softmax')) 
 #(2). 다중 분류의 output layer의 활성화함수는 softmax를 쓴다.
 
 model.summary()
@@ -62,9 +64,9 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
 es=EarlyStopping(monitor='loss', patience=50, mode='auto')
-to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
+# to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=10000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es, to_hist])
+model.fit(x_train, y_train, epochs=10000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)
@@ -90,9 +92,9 @@ print('예측값 : ', y_predict)
 
 '''
 DNN
-loss :  1.1920930376163597e-07
-accuracy :  0.09799999743700027
+loss :  0.0523512804985046
+accuracy :  0.9923999979972839
 실제값 :  [7 2 1 0 4 1 4 9 5 9]        
-예측값 :  [0 0 0 0 0 0 0 0 0 0] 
+예측값 :  [7 2 1 0 4 1 4 9 5 9]
 '''
 
