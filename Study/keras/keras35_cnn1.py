@@ -1,6 +1,6 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D
-from tensorflow.keras.layers import Flatten # 레이어를 쫙 펴 줌
+from tensorflow.keras.layers import Flatten # 레이어를 쫙 펴 줌(1차원으로 변환)
 #Conv 파라미터 :
 #filter : output. 다음 layer에 10개를 던져준다.
 #kernel_size : 이미지를 잘라 연산할 크기 (작업크기)
@@ -34,4 +34,6 @@ model.add(Flatten())    #3*3*7=63 / (63,)로 변환
 model.add(Dense(1)) #최종 아웃풋
 
 model.summary()
-# Conv Parameter : (커널사이즈 * 넘겨받은 채널 * 노드 수) + 노드 수
+# Conv Parameter : 
+# (필터 수 x 커널사이즈(가로) x 커널사이즈(세로) + bias) x 다음 레이어로 전달하는 output 노드의 갯수
+# maxpooling과 flatten은 파라미터를 계산하지 않는다.
