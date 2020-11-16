@@ -4,7 +4,7 @@ from tensorflow.keras.layers import Dense, LSTM
 
 #2. 모델
 model=Sequential()
-model.add(LSTM(200, activation='relu', input_shape=(4,1)))
+model.add(LSTM(200, activation='relu', input_shape=(3,1)))
 model.add(Dense(180, activation='relu'))
 model.add(Dense(120, activation='relu'))
 model.add(Dense(90, activation='relu'))

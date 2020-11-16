@@ -1,6 +1,6 @@
 import numpy as np
-from tensorflow.keras.models import load_model
-from tensorflow.keras.layers import Dense, LSTM
+from tensorflow.keras.models import load_model, Model
+from tensorflow.keras.layers import Dense, LSTM, Input
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import EarlyStopping
 from keras25_split import split_x 
@@ -25,11 +25,11 @@ x_train, x_test, y_train, y_test=train_test_split(x, y, train_size=0.7)
 # model.add(Dense(50))
 # model.add(Dense(10))
 # model.add(Dense(1))
-model=load_model('./save/keras30.h5', custom_objects={'input_shape':(4,1)})
-model.add(Dense(5, name='plusDense1'))
-model.add(Dense(1, name='plusDense2'))
-
-
+model=load_model('./save/keras30.h5')
+input1 = Input(shape=(4, 1))
+dense = model(input1)
+output1 = Dense(1)(dense)
+model = Model(inputs=input1, outputs=output1)
 
 model.summary()
 
