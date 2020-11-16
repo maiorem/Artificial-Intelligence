@@ -1,4 +1,5 @@
 #분류
+#DNN으로 이미지 처리하기
 
 import numpy as np
 #OneHotEncoding
@@ -13,7 +14,8 @@ print(x_train.shape, x_test.shape) #(60000,28,28), (10000,28,28)
 print(y_train.shape, y_test.shape) #(60000,) (10000,)
 
 x_predict=x_test[:10, :, :]
-print(x_predict.shape)
+
+print(x_predict.shape) #(10,28,28)
 print(x_predict)
 
 
@@ -30,28 +32,26 @@ from tensorflow.keras.utils import to_categorical
 y_train=to_categorical(y_train)
 y_test=to_categorical(y_test)
 
-print(y_train.shape, y_test.shape) #(60000,10), (10000,10)
-print(y_train[0])
+# print(y_train.shape, y_test.shape) #(60000,10), (10000,10)
+# print(y_train[0])
 
 #MinMaxScaler의 효과를 주는 형변환
-x_train=x_train.reshape(60000,28,28,1).astype('float32')/255.
-x_test=x_test.reshape(10000,28,28,1).astype('float32')/255.
+x_train=x_train.reshape(60000,28*28).astype('float32')/255. #(60000, 28x28)
+x_test=x_test.reshape(10000,28*28).astype('float32')/255.
 
-print(x_train[0])
+
 
 #2. 모델
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten
 
 model=Sequential()
-model.add(Conv2D(3, (2,2), padding='same', input_shape=(28,28,1)))
-model.add(Conv2D(10, (2,2), padding='valid'))
-model.add(Conv2D(20, (3,3)))
-model.add(Conv2D(30, (2,2), strides=2))
-model.add(MaxPooling2D(pool_size=2))
-model.add(Flatten())
-model.add(Dense(20, activation='relu'))
-model.add(Dense(10, activation='softmax')) #softmax=분류값
+model.add(Dense(3, activation='relu', input_shape=(28*28,)))
+model.add(Dense(10))
+model.add(Dense(20))
+model.add(Dense(30))
+model.add(Dense(20))
+model.add(Dense(10)) #softmax=분류값
 #(2). 다중 분류의 output layer의 활성화함수는 softmax를 쓴다.
 
 model.summary()
@@ -77,7 +77,7 @@ print('accuracy : ', accuracy)
 실습 2. 모델에 es, tensorboard 적용. 
 '''
 
-x_predict=x_predict.reshape(10, 28, 28,1).astype('float32')/255.
+x_predict=x_predict.reshape(10, 28*28).astype('float32')/255.
 print(x_predict)
 
 
@@ -89,10 +89,10 @@ print('예측값 : ', y_predict)
 
 
 '''
-CNN
-loss :  0.20520083606243134
-accuracy :  0.983299970626831
+DNN
+loss :  1.1920930376163597e-07
+accuracy :  0.09799999743700027
 실제값 :  [7 2 1 0 4 1 4 9 5 9]        
-예측값 :  [7 2 1 0 4 1 4 9 5 9] 
+예측값 :  [0 0 0 0 0 0 0 0 0 0] 
 '''
 
