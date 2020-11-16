@@ -120,7 +120,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  [CNN 모델의 기본 형식](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras35_cnn1.py)        
  Conv2D(filter, (kernel_size가로, kernel_size세로), input_shape=(원본 가로, 원본 세로, 채널)        
  CNN 모델은 입력되는 차원과 출력되는 차원이 동일하므로 LSTM처럼 곧바로 DENSE와 연결시켜 줄 수 없다.      
- 사용 기법 : MaxPooling2D -> 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / Flatten => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦         
+ 사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦         
  
  * mnist를 활용한 분류 모델 구현하기        
  mnist란? 훈련용 데이터셋            
@@ -128,8 +128,8 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
   *One Hot Encoding       
   => 데이터를 숫자로 줬을 때, feature의 중요도와 별개로 숫자가 더 큰 값을 컴퓨터가 크다고 판단하는 수가 있다. 그럴 때, True면 1, False면 0으로 값을 줘서 사용자가 원하는 방식으로 컴퓨터가 데이터를 읽도록 출력값을 인코딩 하는 기법 중 하나를 One Hot Encoding이라고 함. 인코딩함으로써 1에 해당하는 분류값을 반환한다. 당연히 y값을 인코딩한다.        
   다중 분류의 몇가지 규칙      
-   1. 다중 분류의 output layer의 활성화함수는 softmax를 쓴다.      
-   2. 다중분류에선 반드시 loss를 categorical_crossentropy로 쓴다.           
+   1. 다중 분류의 output layer의 활성화함수는 **softmax**를 쓴다.      
+   2. 다중분류에선 반드시 loss를 **categorical_crossentropy**로 쓴다.           
    
      softmax함수는 확률을 0에서 1 사이의 실수로 두고, 한 벡터의 모든 원소의 합이 1이 되도록 하므로 accuracy를 담아낼 수 있다.                     
   [CNN 다중 분류 모델](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist2_cnn.py)         
