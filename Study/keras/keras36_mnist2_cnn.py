@@ -82,7 +82,7 @@ print(x_predict)
 
 
 y_predict=model.predict(x_predict)
-y_predict=np.argmax(y_predict, axis=1)
+y_predict=np.argmax(y_predict, axis=1) #One hot encoding의 decoding
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)

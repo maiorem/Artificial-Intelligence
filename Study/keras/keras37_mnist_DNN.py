@@ -51,7 +51,7 @@ model.add(Dense(10))
 model.add(Dense(20))
 model.add(Dense(30))
 model.add(Dense(20))
-model.add(Dense(10)) #softmax=분류값
+model.add(Dense(10)) 
 #(2). 다중 분류의 output layer의 활성화함수는 softmax를 쓴다.
 
 model.summary()
