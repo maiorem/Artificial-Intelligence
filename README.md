@@ -110,7 +110,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 * 모델 저장과 불러오기, 시각화
 
 * CNN모델, 다중 분류 모델
- *CNN(Convolution Neural Network) 모델의 파라미터           
+  * CNN(Convolution Neural Network) 모델의 파라미터           
  #filter : output. 다음 layer에 10개를 던져준다.                    
  #kernel_size : 이미지를 잘라 연산할 크기 (작업크기)                 
  #strides (디폴트=1) : convolution layer 수행시 한번에 이동할 칸                
@@ -120,9 +120,8 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  [CNN 모델의 기본 형식](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras35_cnn1.py)        
  Conv2D(filter, (kernel_size가로, kernel_size세로), input_shape=(원본 가로, 원본 세로, 채널)        
  CNN 모델은 입력되는 차원과 출력되는 차원이 동일하므로 LSTM처럼 곧바로 DENSE와 연결시켜 줄 수 없다.      
- 사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦         
- 
- * mnist를 활용한 분류 모델 구현하기        
+ 사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦          
+  * mnist를 활용한 분류 모델 구현하기        
  mnist란? 훈련용 데이터셋            
  [mnist로 데이터 분류 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist1_imshow.py)           
    * One Hot Encoding       
