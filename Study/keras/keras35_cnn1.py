@@ -9,11 +9,15 @@ from tensorflow.keras.layers import Flatten # 레이어를 쫙 펴 줌(1차원�
 #input_shape=(rows, cols, channels)
 #입력 형식 : batch_size, rows, cols, channels
 
+#activation 디폴트 = relu
+
+
 #참고) LSTM의 파라미터 :
 #units : 출력해주는 노드 수
 #return_sequence : 디폴트는 False
 #입력 형식 : batch_size, timesteps, feature
 #input_shape=(timesteps, feature)
+#activation 디폴트 = tanh
 
 model=Sequential()
 #(2,2) <= 이미지를 잘라 연산할 크기 / (10,10,1) 원본이미지 10x10에 흑백
