@@ -9,12 +9,12 @@ from tensorflow.keras.datasets import mnist
 
 (x_train, y_train), (x_test, y_test)=mnist.load_data()
 
-print(x_train.shape, x_test.shape) #(60000,28,28), (10000,28,28)
-print(y_train.shape, y_test.shape) #(60000,) (10000,)
+# print(x_train.shape, x_test.shape) #(60000,28,28), (10000,28,28)
+# print(y_train.shape, y_test.shape) #(60000,) (10000,)
 
 x_predict=x_test[:10, :, :]
-print(x_predict.shape)
-print(x_predict)
+# print(x_predict.shape) #(10,28,28)
+# print(x_predict)
 
 
 
@@ -30,14 +30,14 @@ from tensorflow.keras.utils import to_categorical
 y_train=to_categorical(y_train)
 y_test=to_categorical(y_test)
 
-print(y_train.shape, y_test.shape) #(60000,10), (10000,10)
-print(y_train[0])
+# print(y_train.shape, y_test.shape) #(60000,10), (10000,10)
+# print(y_train[0])
 
 #MinMaxScaler의 효과를 주는 형변환
 x_train=x_train.reshape(60000,28,28,1).astype('float32')/255.
 x_test=x_test.reshape(10000,28,28,1).astype('float32')/255.
 
-print(x_train[0])
+# print(x_train[0])
 
 #2. 모델
 from tensorflow.keras.models import Sequential
@@ -78,7 +78,7 @@ print('accuracy : ', accuracy)
 '''
 
 x_predict=x_predict.reshape(10, 28, 28,1).astype('float32')/255.
-print(x_predict)
+# print(x_predict)
 
 
 y_predict=model.predict(x_predict)

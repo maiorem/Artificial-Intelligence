@@ -10,21 +10,14 @@ from tensorflow.keras.datasets import mnist
 
 (x_train, y_train), (x_test, y_test)=mnist.load_data()
 
-print(x_train.shape, x_test.shape) #(60000,28,28), (10000,28,28)
-print(y_train.shape, y_test.shape) #(60000,) (10000,)
+# print(x_train.shape, x_test.shape) #(60000,28,28), (10000,28,28)
+# print(y_train.shape, y_test.shape) #(60000,) (10000,)
 
 x_predict=x_test[:10, :, :]
 
-print(x_predict.shape) #(10,28,28)
-print(x_predict)
+# print(x_predict.shape) #(10,28,28)
+# print(x_predict)
 
-
-
-# print(x_train[500])
-# print(y_train[500])
-
-# plt.imshow(x_train[500], 'Blues')
-# plt.show()
 
 #1. 데이터
 #다중 분류 데이터 전처리 (1).OneHotEncoding
@@ -74,10 +67,7 @@ loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)
 print('loss : ', loss)
 print('accuracy : ', accuracy)
 
-'''
-실습 1. 테스트 데이터를 10개 가져와서 predict 만들 것 (원핫 인코딩 원복할 것)
-실습 2. 모델에 es, tensorboard 적용. 
-'''
+
 
 x_predict=x_predict.reshape(10, 28*28).astype('float32')/255.
 print(x_predict)
