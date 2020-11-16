@@ -1,5 +1,5 @@
 #분류
-#DNN으로 이미지 처리하기
+#실습 : DNN으로 이미지 처리하기
 
 import numpy as np
 #OneHotEncoding
