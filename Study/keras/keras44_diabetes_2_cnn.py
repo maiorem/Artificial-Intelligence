@@ -28,7 +28,7 @@ x_test=x_test.reshape(x_test.shape[0],x_test.shape[1], 1, 1)
 
 
 model=Sequential()
-model.add(Conv2D(10, (2,2), padding='same' ,input_shape=(13, 1, 1)))
+model.add(Conv2D(10, (2,2), padding='same' ,input_shape=(10, 1, 1)))
 model.add(Conv2D(200, (2,2), padding='same'))
 model.add(Dropout(0.1))
 model.add(Conv2D(350, (2,2), padding='same'))
