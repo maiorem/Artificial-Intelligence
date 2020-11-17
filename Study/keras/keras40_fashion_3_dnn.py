@@ -40,10 +40,10 @@ model.summary()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
-es=EarlyStopping(monitor='loss', patience=50, mode='auto')
+es=EarlyStopping(monitor='loss', patience=5, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=10000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es])
+model.fit(x_train, y_train, epochs=100, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)
@@ -57,3 +57,11 @@ y_predict=np.argmax(y_predict, axis=1)
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)
+
+'''
+fashion_mnist DNN
+loss :  0.6649179458618164
+accuracy :  0.8845000267028809
+실제값 :  [9 2 1 1 6 1 4 6 5 7]        
+예측값 :  [9 2 1 1 6 1 4 6 5 7] 
+'''
