@@ -29,19 +29,12 @@ x_test=scaler.transform(x_test)
 
 
 model=Sequential()
-model.add(Dense(100, activation='relu', input_shape=(10,)))
-model.add(Dropout(0.1))
-model.add(Dense(800, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(2000, activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(1800, activation='relu'))
-model.add(Dropout(0.4))
-model.add(Dense(280, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(80, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(20, activation='relu'))
+model.add(Dense(128, activation='relu', input_shape=(10,)))
+model.add(Dense(512, activation='relu'))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(8, activation='relu'))
 model.add(Dense(1))
 
 
@@ -66,3 +59,10 @@ print("RMSE : ", RMSE(y_test, y_predict))
 from sklearn.metrics import r2_score 
 r2=r2_score(y_test, y_predict)
 print("R2 : ", r2)
+
+
+
+'''
+RMSE :  59.681647247274306
+R2 :  0.4073546654363812
+'''
