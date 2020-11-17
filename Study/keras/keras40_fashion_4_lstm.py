@@ -27,8 +27,8 @@ model.add(LSTM(20, activation='relu', input_shape=(28*7, 4)))
 model.add(Dense(300, activation='relu'))
 model.add(Dense(200, activation='relu'))
 model.add(Dense(150, activation='relu'))
-model.add(Dense(90))
-model.add(Dense(30))
+model.add(Dense(90, activation='relu'))
+model.add(Dense(30, activation='relu'))
 model.add(Dense(10, activation='softmax')) 
 
 model.summary()
@@ -36,10 +36,10 @@ model.summary()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
-es=EarlyStopping(monitor='loss', patience=10, mode='auto')
+es=EarlyStopping(monitor='loss', patience=3, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=1000, batch_size=1000, verbose=1, validation_split=0.2, callbacks=[es])
+model.fit(x_train, y_train, epochs=50, batch_size=1000, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=1000)
