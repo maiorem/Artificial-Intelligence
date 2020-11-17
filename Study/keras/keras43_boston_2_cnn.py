@@ -29,15 +29,15 @@ x_test=x_test.reshape(x_test.shape[0],x_test.shape[1], 1, 1)
 
 model=Sequential()
 model.add(Conv2D(10, (2,2), padding='same' ,input_shape=(13, 1, 1)))
-model.add(Conv2D(200, (2,2), padding='same'))
-model.add(Dropout(0.1))
-model.add(Conv2D(350, (2,2), padding='same'))
-model.add(Dropout(0.2))
-model.add(Conv2D(700, (2,2), padding='same'))
-model.add(Dropout(0.4))
+model.add(Conv2D(20, (2,2), padding='same'))
+model.add(Conv2D(35, (2,2), padding='same'))
+model.add(Conv2D(70, (2,2), padding='same'))
+model.add(Dropout(0.3))
+model.add(Conv2D(50, (2,2), padding='same'))
+model.add(Conv2D(30, (2,2), padding='same'))
 model.add(Flatten())
-model.add(Dense(80))
-model.add(Dense(30))
+model.add(Dense(80, activation='relu'))
+model.add(Dense(30, activation='relu'))
 model.add(Dense(1))
 
 
@@ -62,3 +62,8 @@ print("RMSE : ", RMSE(y_test, y_predict))
 from sklearn.metrics import r2_score 
 r2=r2_score(y_test, y_predict)
 print("R2 : ", r2)
+
+'''
+RMSE :  3.0577258475903744
+R2 :  0.871296003404844
+'''
