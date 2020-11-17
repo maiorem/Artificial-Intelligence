@@ -18,10 +18,10 @@ y_train=to_categorical(y_train)
 y_test=to_categorical(y_test)
 
 model=Sequential()
-model.add(Conv2D(3, (2,2), padding='same', input_shape=(32,32,3)))
-model.add(Conv2D(10, (2,2), padding='valid'))
-model.add(Conv2D(20, (3,3)))
-model.add(Conv2D(30, (2,2), strides=2))
+model.add(Conv2D(3, (2,2), input_shape=(32,32,3)))
+model.add(Conv2D(20, (2,2)))
+model.add(Conv2D(30, (3,3)))
+model.add(Conv2D(10, (2,2)))
 model.add(MaxPooling2D(pool_size=2))
 model.add(Flatten())
 model.add(Dense(20, activation='relu'))
@@ -48,3 +48,11 @@ y_predict=np.argmax(y_predict, axis=1) #One hot encoding의 decoding은 numpy의
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)
+
+'''
+cifar10 CNN
+loss : 0.2859130447387695
+acc : 0.8936999878883362
+실제값 : [3 8 8 0 6 6 1 6 3 1]
+예측값 : [5 8 8 8 6 6 1 6 3 1]
+'''
