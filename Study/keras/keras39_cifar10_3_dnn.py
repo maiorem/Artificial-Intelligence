@@ -20,11 +20,11 @@ y_test=to_categorical(y_test)
 
 
 model=Sequential()
-model.add(Dense(2000, activation='relu', input_shape=(32*32*3,)))
-model.add(Dense(4000, activation='relu'))
+model.add(Dense(1000, activation='relu', input_shape=(32*32*3,)))
+model.add(Dense(2000, activation='relu'))
 model.add(Dense(3000, activation='relu'))
-model.add(Dense(200, activation='relu'))
-model.add(Dense(100, activation='relu'))
+model.add(Dense(800, activation='relu'))
+model.add(Dense(300, activation='relu'))
 model.add(Dense(80, activation='relu'))
 model.add(Dense(30, activation='relu'))
 model.add(Dense(10, activation='softmax')) 
@@ -37,7 +37,7 @@ model.summary()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
-es=EarlyStopping(monitor='loss', patience=20, mode='auto')
+es=EarlyStopping(monitor='loss', patience=10, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
 model.fit(x_train, y_train, epochs=1000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es])
@@ -53,3 +53,11 @@ y_predict=np.argmax(y_predict, axis=1)
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)
+
+'''
+cifar10 DNN
+loss : 4.863764762878418
+acc : 0.40130001306533813
+실제값 : [3 8 8 0 6 6 1 6 3 1]
+예측값 : [6 9 8 0 4 6 5 2 3 9]
+'''
