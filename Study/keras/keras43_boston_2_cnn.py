@@ -1,6 +1,6 @@
 import numpy as np
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Dropout, Conv2D, Flatten, MaxPooling2D
+from tensorflow.keras.layers import Dense, LSTM, Dropout, Conv1D,Conv2D, Flatten, MaxPooling2D
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
@@ -24,18 +24,17 @@ x_test=scaler.transform(x_test)
 
 
 x_train=x_train.reshape(x_train.shape[0], x_train.shape[1], 1, 1)
-x_test=x_test.reshape(x_test.shape[0],x_test.shape[1], 1)
+x_test=x_test.reshape(x_test.shape[0],x_test.shape[1], 1, 1)
 
 
 model=Sequential()
-model.add(Conv2D(10, (2, 2), input_shape=(13, 1, 1)))
-model.add(Conv2D(20, (2, 2)))
+model.add(Conv2D(10, (2,2), padding='same' ,input_shape=(13, 1, 1)))
+model.add(Conv2D(200, (2,2), padding='same'))
 model.add(Dropout(0.1))
-model.add(Conv2D(35, (2, 2)))
+model.add(Conv2D(350, (2,2), padding='same'))
 model.add(Dropout(0.2))
-model.add(Conv2D(70, (2, 2)))
+model.add(Conv2D(700, (2,2), padding='same'))
 model.add(Dropout(0.4))
-model.add(MaxPooling2D())
 model.add(Flatten())
 model.add(Dense(80))
 model.add(Dense(30))

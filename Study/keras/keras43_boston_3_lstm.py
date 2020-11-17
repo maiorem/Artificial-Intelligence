@@ -64,3 +64,9 @@ print("RMSE : ", RMSE(y_test, y_predict))
 from sklearn.metrics import r2_score 
 r2=r2_score(y_test, y_predict)
 print("R2 : ", r2)
+
+
+'''
+RMSE :  3.4722069969249505
+R2 :  0.8554447018389687
+'''
