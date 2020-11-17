@@ -3,20 +3,19 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Conv2D, LSTM
 from tensorflow.keras.layers import MaxPooling2D, Flatten
+from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import numpy as np
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 x_predict=x_test[:10, :, :, :]
 
+x_train=x_train.astype('float32')/255.
+x_test=x_test.astype('float32')/255.
+x_predict=x_predict.astype('float32')/255.
 
 y_train=to_categorical(y_train) 
 y_test=to_categorical(y_test)
-
-print(y_train.shape)
-print(y_test.shape)
-
-
 
 model=Sequential()
 model.add(Conv2D(3, (2,2), padding='same', input_shape=(32,32,3)))
