@@ -19,16 +19,20 @@ y_test=to_categorical(y_test)
 
 model=Sequential()
 model.add(Conv2D(64, (3,3), input_shape=(32,32,3)))
+model.add(Dropout(0.1))
+model.add(Conv2D(64, (3,3)))
 model.add(Dropout(0.2))
-model.add(MaxPooling2D(2, 2))
-model.add(Conv2D(64, (3, 3), activation='relu'))
-model.add(Dropout(0.2))
-model.add(MaxPooling2D(2, 2))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(128, (3,3)))
+model.add(Dropout(0.3))
+model.add(Conv2D(256, (3,3)))
+model.add(Dropout(0.4))
+model.add(MaxPooling2D(pool_size=2))
 model.add(Flatten())
 model.add(Dense(512, activation='relu'))
 model.add(Dropout(0.2))
-model.add(Dense(100, activation='softmax'))
-model.summary()
+model.add(Dense(512, activation='relu'))
+model.add(Dense(100, activation='softmax')) 
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
@@ -36,10 +40,10 @@ from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
 es=EarlyStopping(monitor='loss', patience=10, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=1000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es])
+model.fit(x_train, y_train, epochs=1000, batch_size=512, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
-loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)
+loss, accuracy=model.evaluate(x_test, y_test, batch_size=512)
 
 print('loss : ', loss)
 print('accuracy : ', accuracy)

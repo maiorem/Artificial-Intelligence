@@ -18,15 +18,20 @@ y_train=to_categorical(y_train)
 y_test=to_categorical(y_test)
 
 model=Sequential()
-model.add(Conv2D(3, (2,2), input_shape=(32,32,3)))
-model.add(Conv2D(20, (2,2)))
-model.add(Conv2D(30, (3,3)))
+model.add(Conv2D(64, (3,3), input_shape=(32,32,3)))
+model.add(Dropout(0.1))
+model.add(Conv2D(64, (3,3)))
 model.add(Dropout(0.2))
-model.add(Conv2D(10, (2,2)))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(128, (3,3)))
+model.add(Dropout(0.3))
+model.add(Conv2D(256, (3,3)))
+model.add(Dropout(0.4))
 model.add(MaxPooling2D(pool_size=2))
 model.add(Flatten())
-model.add(Dense(20, activation='relu'))
+model.add(Dense(512, activation='relu'))
 model.add(Dropout(0.2))
+model.add(Dense(512, activation='relu'))
 model.add(Dense(10, activation='softmax')) 
 
 model.summary()
@@ -37,10 +42,10 @@ from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
 es=EarlyStopping(monitor='loss', patience=10, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=1000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es])
+model.fit(x_train, y_train, epochs=1000, batch_size=512, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
-loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)
+loss, accuracy=model.evaluate(x_test, y_test, batch_size=512)
 
 print('loss : ', loss)
 print('accuracy : ', accuracy)
@@ -53,8 +58,8 @@ print('예측값 : ', y_predict)
 
 '''
 cifar10 CNN
-loss : 0.2859130447387695
-acc : 0.8936999878883362
-실제값 : [3 8 8 0 6 6 1 6 3 1]
-예측값 : [5 8 8 8 6 6 1 6 3 1]
+loss :  41.116790771484375
+accuracy :  0.5354999899864197
+실제값 :  [3 8 8 0 6 6 1 6 3 1]        
+예측값 :  [6 8 2 0 6 6 1 6 3 8] 
 '''
