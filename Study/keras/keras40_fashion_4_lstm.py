@@ -24,11 +24,13 @@ x_predict=x_predict.reshape(10, 28*7, 4).astype('float32')/255.
 
 model=Sequential()
 model.add(LSTM(20, activation='relu', input_shape=(28*7, 4)))
+model.add(Dense(6000, activation='relu'))
+model.add(Dense(2000, activation='relu'))
+model.add(Dense(1500, activation='relu'))
+model.add(Dense(900, activation='relu'))
 model.add(Dense(300, activation='relu'))
-model.add(Dense(200, activation='relu'))
-model.add(Dense(150, activation='relu'))
-model.add(Dense(90, activation='relu'))
-model.add(Dense(30, activation='relu'))
+model.add(Dense(140, activation='relu'))
+model.add(Dense(70, activation='relu'))
 model.add(Dense(10, activation='softmax')) 
 
 model.summary()
@@ -36,10 +38,10 @@ model.summary()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
-es=EarlyStopping(monitor='loss', patience=3, mode='auto')
+es=EarlyStopping(monitor='loss', patience=10, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=50, batch_size=1000, verbose=1, validation_split=0.2, callbacks=[es])
+model.fit(x_train, y_train, epochs=500, batch_size=1000, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=1000)
@@ -55,8 +57,8 @@ print('예측값 : ', y_predict)
 
 '''
 fashion_mnist LSTM
-loss : 0.2859130447387695
-acc : 0.8936999878883362
-실제값 : [3 8 8 0 6 6 1 6 3 1]
-예측값 : [5 8 8 8 6 6 1 6 3 1]
+loss :  1.0232570171356201
+accuracy :  0.6074000000953674
+실제값 :  [9 2 1 1 6 1 4 6 5 7]        
+예측값 :  [9 2 1 1 4 1 0 6 5 5]
 '''
