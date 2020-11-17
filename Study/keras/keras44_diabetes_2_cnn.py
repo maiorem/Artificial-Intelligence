@@ -28,12 +28,14 @@ x_test=x_test.reshape(x_test.shape[0],x_test.shape[1], 1, 1)
 
 
 model=Sequential()
-model.add(Conv2D(32, (2,2), padding='same' ,input_shape=(10, 1, 1)))
-model.add(Conv2D(64, (2,2), padding='same'))
-model.add(Conv2D(32, (2,2), padding='same'))
-model.add(Conv2D(16, (2,2), padding='same'))
+model.add(Conv2D(512, (2,2), padding='same' ,input_shape=(10, 1, 1)))
+model.add(Dropout(0.1))
+model.add(Conv2D(256, (2,2), padding='same'))
+model.add(Dropout(0.2))
+model.add(Conv2D(64, (1,1), padding='same'))
+model.add(Conv2D(32, (1,1), padding='same'))
 model.add(Flatten())
-model.add(Dense(4))
+model.add(Dense(4, activation='relu'))
 model.add(Dense(1))
 
 
@@ -60,6 +62,6 @@ r2=r2_score(y_test, y_predict)
 print("R2 : ", r2)
 
 '''
-RMSE :  53.639946154750504
-R2 :  0.4408740701251791
+RMSE :  51.23903645924894
+R2 :  0.5438865748098389
 '''

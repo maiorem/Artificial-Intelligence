@@ -2,7 +2,7 @@ import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes
 
@@ -17,7 +17,7 @@ y=dataset.target
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 
 
-scaler=MinMaxScaler()
+scaler=StandardScaler()
 scaler.fit(x_train)
 x_train=scaler.transform(x_train)
 x_test=scaler.transform(x_test)
@@ -30,8 +30,7 @@ x_test=scaler.transform(x_test)
 
 model=Sequential()
 model.add(Dense(128, activation='relu', input_shape=(10,)))
-model.add(Dense(512, activation='relu'))
-model.add(Dense(128, activation='relu'))
+model.add(Dense(256, activation='relu'))
 model.add(Dense(64, activation='relu'))
 model.add(Dense(32, activation='relu'))
 model.add(Dense(8, activation='relu'))
@@ -48,7 +47,6 @@ early_stopping=EarlyStopping(monitor='loss', patience=50, mode='min')
 model.fit(x_train, y_train, epochs=10000, batch_size=1, validation_split=0.2 ,callbacks=[early_stopping])
 
 y_predict=model.predict(x_test)
-
 
 from sklearn.metrics import mean_squared_error 
 def RMSE(y_test, y_pred) :
