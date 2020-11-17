@@ -28,8 +28,16 @@ x_test=x_test.reshape(x_test.shape[0],x_test.shape[1],1)
 
 model=Sequential()
 model.add(LSTM(64, activation='relu', input_shape=(10, 1)))
-model.add(Dense(32, activation='relu'))
-model.add(Dense(16, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(8, activation='relu'))
 model.add(Dense(1))
 
 
@@ -58,6 +66,6 @@ r2=r2_score(y_test, y_predict)
 print("R2 : ", r2)
 
 '''
-RMSE :  63.39998781881425
-R2 :  0.2216613661227469
+RMSE :  67.24823929671082
+R2 :  0.3077226773155105
 '''
