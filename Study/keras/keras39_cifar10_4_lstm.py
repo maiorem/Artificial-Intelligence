@@ -21,10 +21,10 @@ y_test=to_categorical(y_test)
 
 model=Sequential()
 model.add(LSTM(20, activation='relu', input_shape=(32*32, 3)))
-model.add(Dense(300, activation='relu'))
 model.add(Dense(200, activation='relu'))
-model.add(Dense(150, activation='relu'))
-model.add(Dense(90))
+model.add(Dense(1000, activation='relu'))
+model.add(Dense(550, activation='relu'))
+model.add(Dense(190))
 model.add(Dense(30))
 model.add(Dense(10, activation='softmax')) 
 #(2). 다중 분류의 output layer의 활성화함수는 softmax를 쓴다.
@@ -39,10 +39,10 @@ from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
 es=EarlyStopping(monitor='loss', patience=10, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
-model.fit(x_train, y_train, epochs=1000, batch_size=24, verbose=1, validation_split=0.2, callbacks=[es])
+model.fit(x_train, y_train, epochs=1000, batch_size=2000, verbose=1, validation_split=0.2, callbacks=[es])
 
 #4. 평가, 예측
-loss, accuracy=model.evaluate(x_test, y_test, batch_size=24)
+loss, accuracy=model.evaluate(x_test, y_test, batch_size=2000)
 
 print('loss : ', loss)
 print('accuracy : ', accuracy)
@@ -53,3 +53,11 @@ y_predict=np.argmax(y_predict, axis=1)
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)
+
+'''
+cifar10 LSTM
+loss :  2.30287504196167
+accuracy :  0.10000000149011612
+실제값 :  [3 8 8 0 6 6 1 6 3 1]
+예측값 :  [6 6 6 6 6 6 6 6 6 6]
+'''
