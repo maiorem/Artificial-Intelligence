@@ -44,7 +44,7 @@ model.save("./save/keras46_cnn.h5")
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
-es=EarlyStopping(monitor='loss', patience=50, mode='auto')
+es=EarlyStopping(monitor='accuracy', patience=50, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
 model.fit(x_train, y_train, epochs=10000, batch_size=1, validation_split=0.2, callbacks=[es])
