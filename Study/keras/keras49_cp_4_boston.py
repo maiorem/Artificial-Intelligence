@@ -56,6 +56,13 @@ early_stopping=EarlyStopping(monitor='val_loss', patience=10, mode='min')
 
 hist=model.fit(x_train, y_train, epochs=100, batch_size=1, validation_split=0.2 ,callbacks=[early_stopping, cp])
 
+#모델 저장
+model.save('./save/model_boston.h5')
+
+# 가중치만 저장
+model.save_weights('./save/weight_boston.h5')
+
+
 y_predict=model.predict(x_test)
 
 
