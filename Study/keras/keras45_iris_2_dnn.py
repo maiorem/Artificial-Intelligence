@@ -29,17 +29,14 @@ x_test=scaler.transform(x_test)
 
 model=Sequential()
 model.add(Dense(80, activation='relu', input_shape=(4,)))
-model.add(Dense(150, activation='relu'))
-model.add(Dropout(0.1))
 model.add(Dense(350, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(700, activation='relu'))
+model.add(Dropout(0.1))
+model.add(Dense(550, activation='relu'))
 model.add(Dense(1000, activation='relu'))
-model.add(Dropout(0.3))
+model.add(Dropout(0.2))
 model.add(Dense(480, activation='relu'))
 model.add(Dropout(0.4))
-model.add(Dense(280, activation='relu'))
-model.add(Dense(80))
+model.add(Dense(80, activation='relu'))
 model.add(Dense(30))
 model.add(Dense(1))
 
@@ -69,6 +66,6 @@ print("R2 : ", r2)
 '''
 load_iris dnn
 
-RMSE :  0.16951161951177793
-R2 :  0.9598435244805044
+RMSE :  0.028727514381544462
+R2 :  0.9986470982253413
 '''
