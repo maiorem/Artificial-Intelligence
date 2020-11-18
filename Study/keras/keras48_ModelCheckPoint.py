@@ -58,7 +58,7 @@ result=model.evaluate(x_test, y_test, batch_size=32)
 print('loss : ', result[0])
 print('accuracy : ', result[1])
 
-#시각화
+##########loss와 acc 시각화
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(10, 6)) #단위가 무엇인지 찾아볼 것!!!!
