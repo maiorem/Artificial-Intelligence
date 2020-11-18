@@ -1,8 +1,6 @@
-#세이브 로드 모델 & 텐서보드
+#세이브 로드 모델
 *.h5
 *.hdf5
-*.v2
-*.profile-empty
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
