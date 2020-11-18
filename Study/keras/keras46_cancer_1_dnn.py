@@ -41,7 +41,7 @@ model.save("./save/keras46_dnn.h5")
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
-es=EarlyStopping(monitor='accuracy', patience=10, mode='auto')
+es=EarlyStopping(monitor='accuracy', patience=30, mode='auto')
 # to_hist=TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True, write_images=True)
 
 model.fit(x_train, y_train, epochs=10000, batch_size=1, validation_split=0.2, callbacks=[es])
@@ -62,6 +62,6 @@ print('accuracy : ', accuracy)
 '''
 breast cancer DNN
 
-loss :  1.6759411096572876
-accuracy :  0.9736841917037964
+loss :  0.043071404099464417
+accuracy :  0.9912280440330505
 '''
