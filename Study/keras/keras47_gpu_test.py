@@ -20,7 +20,7 @@ with tf.device('/gpu:0') :
 
     model.fit(x, y, epochs=3, batch_size=16)
 
-    model.save('my_model.h5')
+    # model.save('my_model.h5')
 
 end1=datetime.datetime.now()
 time_delta1=end1-start1
@@ -36,7 +36,7 @@ with tf.device('/cpu:0') :
 
     model.fit(x, y, epochs=3, batch_size=16)
 
-    model.save('my_model.h5')
+    # model.save('my_model.h5')
 
 end2=datetime.datetime.now()
 time_delta2=end2-start2

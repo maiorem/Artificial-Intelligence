@@ -30,6 +30,10 @@ model.add(Dense(20, activation='relu'))
 model.add(Dense(10, activation='softmax'))
 model.summary()
 
+
+
+
+
 #3. 컴파일, 훈련
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
@@ -41,6 +45,12 @@ modelpath='./model/fashion-{epoch:02d}-{val_loss:.4f}.hdf5'
 cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
 
 hist=model.fit(x_train, y_train, epochs=1000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es, cp])
+
+#모델 저장
+model.save('./save/model_fashion.h5')
+# 가중치만 저장
+model.save_weights('./save/weight_fashion.h5')
+
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)

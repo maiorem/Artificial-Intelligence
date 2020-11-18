@@ -40,6 +40,9 @@ model.add(Dense(1))
 
 model.summary()
 
+
+
+
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 
 
@@ -48,6 +51,12 @@ early_stopping=EarlyStopping(monitor='val_loss', patience=50, mode='min')
 modelpath='./model/diabetes-{epoch:02d}-{val_loss:.4f}.hdf5'
 cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
 hist=model.fit(x_train, y_train, epochs=10000, batch_size=1, validation_split=0.2 ,callbacks=[early_stopping, cp])
+
+#모델 저장
+model.save('./save/model_diabetes.h5')
+
+# 가중치만 저장
+model.save_weights('./save/weight_diabetes.h5')
 
 y_predict=model.predict(x_test)
 

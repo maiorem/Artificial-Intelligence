@@ -37,7 +37,7 @@ model.add(Dense(1, activation='sigmoid'))
 
 
 model.summary()
-model.save("./save/keras46_dnn.h5")
+
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
@@ -47,6 +47,12 @@ es=EarlyStopping(monitor='accuracy', patience=30, mode='auto')
 modelpath='./model/cancer-{epoch:02d}-{val_loss:.4f}.hdf5'
 cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
 hist=model.fit(x_train, y_train, epochs=10000, batch_size=1, validation_split=0.2, callbacks=[es, cp])
+
+#모델 저장
+model.save('./save/model_cancer.h5')
+# 가중치만 저장
+model.save_weights('./save/weight_cancer.h5')
+
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=1)

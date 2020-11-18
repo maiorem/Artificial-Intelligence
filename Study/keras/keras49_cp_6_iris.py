@@ -40,7 +40,7 @@ model.add(Flatten())
 model.add(Dense(20, activation='relu'))
 model.add(Dense(3, activation='softmax'))
 model.summary()
-model.save("./save/keras45_cnn.h5")
+
 
 #3. 컴파일, 훈련
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -52,6 +52,12 @@ es=EarlyStopping(monitor='loss', patience=50, mode='auto')
 modelpath='./model/iris-{epoch:02d}-{val_loss:.4f}.hdf5'
 cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
 hist=model.fit(x_train, y_train, epochs=10000, batch_size=1, validation_split=0.2, callbacks=[es, cp])
+
+#모델 저장
+model.save('./save/model_iris.h5')
+# 가중치만 저장
+model.save_weights('./save/weight_iris.h5')
+
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=1)

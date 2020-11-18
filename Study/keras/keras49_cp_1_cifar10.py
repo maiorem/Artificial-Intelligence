@@ -20,8 +20,9 @@ y_test=to_categorical(y_test)
 model=Sequential()
 model.add(Conv2D(3, (2,2), input_shape=(32,32,3)))
 model.add(Conv2D(20, (2,2)))
-model.add(Conv2D(30, (3,3)))
-model.add(Conv2D(10, (2,2)))
+model.add(Conv2D(30, (2,2)))
+model.add(Conv2D(50, (2,2)))
+model.add(Conv2D(70, (2,2)))
 model.add(MaxPooling2D(pool_size=2))
 model.add(Flatten())
 model.add(Dense(20, activation='relu'))
@@ -29,6 +30,7 @@ model.add(Dense(10, activation='softmax'))
 
 model.summary()
 
+#모델 저장
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
@@ -40,6 +42,13 @@ cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, 
 
 
 hist=model.fit(x_train, y_train, epochs=1000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es, cp])
+
+#모델+가중치 저장
+model.save('./save/model_cifar10.h5')
+
+# 가중치만 저장
+model.save_weights('./save/weight_cifar10.h5')
+
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)

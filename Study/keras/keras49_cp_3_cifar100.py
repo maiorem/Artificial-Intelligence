@@ -29,6 +29,8 @@ model.add(Dropout(0.2))
 model.add(Dense(100, activation='softmax'))
 model.summary()
 
+
+
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
@@ -38,6 +40,13 @@ es=EarlyStopping(monitor='val_loss', patience=10, mode='auto')
 modelpath='./model/cifar100-{epoch:02d}-{val_loss:.4f}.hdf5'
 cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
 hist=model.fit(x_train, y_train, epochs=1000, batch_size=32, verbose=1, validation_split=0.2, callbacks=[es, cp])
+
+#모델 저장
+model.save('./save/model_cifar100.h5')
+
+# 가중치만 저장
+model.save_weights('./save/weight_cifar100.h5')
+
 
 #4. 평가, 예측
 loss, accuracy=model.evaluate(x_test, y_test, batch_size=32)
