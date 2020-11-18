@@ -35,12 +35,8 @@ model.add(LSTM(80, activation='relu', input_shape=(30, 1)))
 model.add(Dense(150, activation='relu'))
 model.add(Dropout(0.1))
 model.add(Dense(350, activation='relu'))
-model.add(Dropout(0.2))
 model.add(Dense(700, activation='relu'))
-model.add(Dense(1000, activation='relu'))
 model.add(Dropout(0.3))
-model.add(Dense(480, activation='relu'))
-model.add(Dropout(0.4))
 model.add(Dense(280, activation='relu'))
 model.add(Dense(80))
 model.add(Dense(30))
@@ -75,8 +71,8 @@ print('accuracy : ', accuracy)
 '''
 breast cancer LSTM
 
-loss :  0.2800675928592682
-accuracy :  0.9035087823867798
+loss :  0.1184873878955841
+accuracy :  0.9473684430122375
 
 '''
 
