@@ -9,10 +9,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
 #데이터 불러오기
-x_train=np.load('./data/iris_x_train.npy')
-x_test=np.load('./data/iris_x_test.npy')
-y_train=np.load('./data/iris_y_train.npy')
-y_test=np.load('./data/iris_y_test.npy')
+x=np.load('./data/iris_x.npy')
+y=np.load('./data/iris_y.npy')
+
+x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
+
 
 y_train=to_categorical(y_train) 
 y_test=to_categorical(y_test)

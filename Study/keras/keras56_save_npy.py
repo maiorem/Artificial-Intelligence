@@ -1,19 +1,8 @@
 # 나머지 데이터셋을 저장하시오
-from sklearn.datasets import load_boston, load_breast_cancer, load_diabetes, load_iris
+from sklearn.datasets import load_boston, load_breast_cancer, load_diabetes
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.datasets import cifar10, cifar100
 import numpy as np
-
-iris_dataset=load_iris()
-iris_x=iris_dataset.data
-iris_y=iris_dataset.target
-iris_x_train, iris_x_test, iris_y_train, iris_y_test=train_test_split(iris_x, iris_y, test_size=0.2)
-
-np.save('./data/iris_x_train.npy', arr=iris_x_train)
-np.save('./data/iris_x_test.npy', arr=iris_x_test)
-np.save('./data/iris_y_train.npy', arr=iris_y_train)
-np.save('./data/iris_y_test.npy', arr=iris_y_test)
-
 
 
 boston_dataset=load_boston()
