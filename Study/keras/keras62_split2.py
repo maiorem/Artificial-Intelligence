@@ -6,19 +6,17 @@ def split_data(x, size) :
     for i in range(x.shape[0]-size+1) :
         subset=x[i:i+size,:]
         aaa.append(subset)
-    print(type(aaa))
     return np.array(aaa)
 
 
 
-#2차원 데이터셋
+# 테스트 : 2차원 데이터셋
 from sklearn.datasets import load_iris
 dataset=load_iris()
 x=dataset.data #(150,4)
 y=dataset.target #(150,)
 size=5
 # (5,4) 행렬 데이터 146개
-
 
 
 data_iris=split_data(x, size)
