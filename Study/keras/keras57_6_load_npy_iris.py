@@ -8,6 +8,7 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
+#데이터 불러오기
 x_train=np.load('./data/iris_x_train.npy')
 x_test=np.load('./data/iris_x_test.npy')
 y_train=np.load('./data/iris_y_train.npy')

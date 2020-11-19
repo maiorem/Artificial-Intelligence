@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_boston
 
-#데이터
+#데이터 불러오기
 x_train=np.load('./data/boston_x_train.npy')
 x_test=np.load('./data/boston_x_test.npy')
 y_train=np.load('./data/boston_y_train.npy')

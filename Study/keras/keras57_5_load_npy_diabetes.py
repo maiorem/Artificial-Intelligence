@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes
 
-#데이터
+#데이터 불러오기
 x_train=np.load('./data/diabetes_x_train.npy')
 x_test=np.load('./data/diabetes_x_test.npy')
 y_train=np.load('./data/diabetes_y_train.npy')

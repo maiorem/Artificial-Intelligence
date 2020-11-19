@@ -6,6 +6,7 @@ from tensorflow.keras.layers import MaxPooling2D, Flatten
 import matplotlib.pyplot as plt
 import numpy as np
 
+#데이터 불러오기
 x_train=np.load('./data/fashion_mnist_x_train.npy')
 x_test=np.load('./data/fashion_mnist_x_test.npy')
 y_train=np.load('./data/fashion_mnist_y_train.npy')

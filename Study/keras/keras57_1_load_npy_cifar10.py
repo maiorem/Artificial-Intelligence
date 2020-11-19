@@ -4,7 +4,7 @@ from tensorflow.keras.layers import Conv2D, Dense, MaxPooling2D, Flatten
 # from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.utils import to_categorical
 
-####1.데이터
+#데이터 불러오기
 x_train=np.load('./data/cifar10_x_train.npy')
 x_test=np.load('./data/cifar10_x_test.npy')
 y_train=np.load('./data/cifar10_y_train.npy')
