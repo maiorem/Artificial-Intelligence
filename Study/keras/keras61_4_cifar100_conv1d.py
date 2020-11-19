@@ -20,14 +20,9 @@ y_test=to_categorical(y_test)
 
 
 model=Sequential()
-model.add(Conv1D(20, kernel_size=2, strides=1, padding='same', input_shape=(32*32, 3)))
-model.add(Conv1D(150, kernel_size=2,  padding='same'))
-model.add(Conv1D(100, kernel_size=2, padding='same'))
-model.add(Conv1D(80, kernel_size=2, padding='same'))
-model.add(Conv1D(70, kernel_size=2, padding='same'))
-model.add(Conv1D(50, kernel_size=2, padding='same'))
+model.add(Conv1D(10, kernel_size=2, strides=1, padding='same', input_shape=(32*32, 3)))
+model.add(Conv1D(30, kernel_size=2,  padding='same'))
 model.add(Conv1D(20, kernel_size=2, padding='same'))
-model.add(MaxPooling1D())
 model.add(Flatten())
 model.add(Dense(20))
 model.add(Dense(100, activation='softmax'))  
@@ -61,4 +56,7 @@ loss :
 accuracy :  
 실제값 : 
 예측값 :  
+
+cifar100 Conv1D
+
 '''

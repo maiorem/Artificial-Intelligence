@@ -45,7 +45,6 @@ model.add(Dense(1, activation='sigmoid'))
 
 
 model.summary()
-model.save("./save/keras46_lstm.h5")
 
 #3. 컴파일, 훈련
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -63,18 +62,14 @@ print('loss : ', loss)
 print('accuracy : ', accuracy)
 
 
-
-# y_predict=model.predict(x_test)
-
-# print('실제값 : ', y_test)
-# print('예측값 : ', y_predict)
-
 '''
 breast cancer LSTM
-
 loss :  0.1184873878955841
 accuracy :  0.9473684430122375
 
+breast cancer Conv1D
+loss :  0.7208057045936584
+accuracy :  0.9736841917037964
 '''
 
 

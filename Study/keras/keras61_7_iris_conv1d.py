@@ -45,7 +45,8 @@ model.add(Dense(3, activation='softmax'))
 
 
 model.summary()
-model.save("./save/keras45_lstm.h5")
+
+
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
@@ -70,11 +71,14 @@ print('예측값 : ', y_predict)
 
 '''
 load_iris LSTM
-
 loss :  1.47354257106781
 accuracy :  0.9333333373069763
-실제값 :  [0 1 2 2 1 2 2 2 0 2 1 1 0 0 
-1 1 1 2 2 2 0 1 2 1 1 1 0 0 0 0]       
-예측값 :  [0 1 2 2 1 2 2 2 0 1 1 1 0 0 
-1 2 1 2 2 2 0 1 2 1 1 1 0 0 0 0]  
+실제값 :  [0 1 2 2 1 2 2 2 0 2 1 1 0 0 1 1 1 2 2 2 0 1 2 1 1 1 0 0 0 0]       
+예측값 :  [0 1 2 2 1 2 2 2 0 1 1 1 0 0 1 2 1 2 2 2 0 1 2 1 1 1 0 0 0 0]  
+
+Conv1D
+loss :  0.0905124768614769
+accuracy :  0.9666666388511658
+실제값 :  [1 1 2 0 2 1 2 0 2 2 0 1 2 0 2 0 2 1 2 2 1 0 1 0 0 0 1 1 1 2]
+예측값 :  [1 1 2 0 2 1 2 0 2 2 0 1 2 0 2 0 2 1 1 2 1 0 1 0 0 0 1 1 1 2]
 '''
