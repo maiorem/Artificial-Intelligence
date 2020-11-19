@@ -2,11 +2,10 @@ import numpy as np
 
 # 2차원 리스트의 행을 사이즈만큼 잘라 3차원으로 반환하는 split함수
 def split_data(x, size) :
-    aaa=[]
+    data=[]
     for i in range(x.shape[0]-size+1) :
-        subset=x[i:i+size,:]
-        aaa.append(subset)
-    return np.array(aaa)
+        data.append(x[i:i+size,:])
+    return np.array(data)
 
 
 
