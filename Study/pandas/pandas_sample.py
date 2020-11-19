@@ -29,10 +29,10 @@ E  18  20
 '''
 
 # print("df2[0] : ", df2[0]) # 에러 : 컬럼이 존재하지 않음
-# print("df2.loc['나'] : \n", df2.loc['나']) # 에러 : loc는 행에서만 사용
+# print("df2.loc['나'] : \n", df2.loc['나']) # 에러 : loc는 행 우선으로 사용
 
-print("df2.iloc[:, 2] : \n", df2.iloc[:, 2]) # index location # '다'열의 모든 행
-# print("df2[:, 2] : \n", df2[:, 2]) # 에러 : pandas에선 헤더와 열을 기준으로 데이터 사용.
+print("df2.iloc[:, 2] : \n", df2.iloc[:, 2]) # index location # 인덱스 2열의 모든 행
+# print("df2[:, 2] : \n", df2[:, 2]) # 에러 : pandas에선 헤더와 열의 위치 기준으로 데이터 사용.
 
 
 # 로우
