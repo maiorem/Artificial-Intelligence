@@ -1,6 +1,7 @@
 #세이브 모델
 *.h5
 *.hdf5
+*.npy
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
