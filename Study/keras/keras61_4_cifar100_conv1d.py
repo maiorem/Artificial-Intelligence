@@ -24,7 +24,7 @@ model.add(Conv1D(10, kernel_size=2, strides=1, padding='same', input_shape=(32*3
 model.add(Conv1D(30, kernel_size=2,  padding='same'))
 model.add(Conv1D(20, kernel_size=2, padding='same'))
 model.add(Flatten())
-model.add(Dense(20))
+model.add(Dense(50))
 model.add(Dense(100, activation='softmax'))  
 
 model.summary()
