@@ -9,16 +9,16 @@ def split_data(x, size) :
 
 
 
-# 테스트 : 2차원 데이터셋
-from sklearn.datasets import load_iris
-dataset=load_iris()
-x=dataset.data #(150,4)
-y=dataset.target #(150,)
-size=5
-# (5,4) 행렬 데이터 146개
+# # 테스트 : 2차원 데이터셋
+# from sklearn.datasets import load_iris
+# dataset=load_iris()
+# x=dataset.data #(150,4)
+# y=dataset.target #(150,)
+# size=5
+# # (5,4) 행렬 데이터 146개
 
 
-data_iris=split_data(x, size)
-print('======================')
-print(data_iris)
-print(data_iris.shape)
+# data_iris=split_data(x, size)
+# print('======================')
+# print(data_iris)
+# print(data_iris.shape)
