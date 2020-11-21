@@ -1,22 +1,17 @@
-# 네개의 데이터 앙상블 
-# 컬럼 수 각각 3, 4, 5, 6
-# 월요일 삼성 09시 시가(시작가) / 마감 : 일요일 23시 59분 59초
-# 비트와 삼성은 20일 데이터 쓰지 말고 금과 코스닥은 20일 데이터 쓸 것
+# 앙상블 없이 하나의 데이터로 합쳐서 DNN 사용하기
 
 import numpy as np
 import pandas as pd
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Dense, Dropout, Input, LSTM, Conv1D, MaxPooling1D, Flatten, concatenate
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-from sklearn. preprocessing import StandardScaler, MinMaxScaler
+from sklearn. preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from keras62_split2 import split_data
 
 samsung=pd.read_csv('./data/csv/삼성전자 1120.csv', engine='python', header=0, index_col=0, sep=',')
 bit=pd.read_csv('./data/csv/비트컴퓨터 1120.csv',  engine='python', header=0, index_col=0, sep=',')
 gold=pd.read_csv('./data/csv/금현물.csv',  engine='python', header=0, index_col=0, sep=',')
 kosdak=pd.read_csv('./data/csv/코스닥.csv',  engine='python', header=0, index_col=0, sep=',')
-
 
 
 
@@ -60,8 +55,9 @@ samsung_y=samsung[['시가']]
 # 11월 20일 데이터 삭제
 samsung_x.drop(samsung_x.index[-1], inplace=True)
 bit.drop(bit.index[-1], inplace=True)
+gold.drop(gold.index[-1], inplace=True)
+kosdak.drop(kosdak.index[-1], inplace=True)
 samsung_y.drop(samsung_y.index[-1], inplace=True)
-
 
 #to numpy
 samsung_x=samsung_x.to_numpy()
@@ -71,37 +67,14 @@ gold_x=gold.to_numpy()
 kosdak_x=kosdak.to_numpy()
 
 
+# 데이터 행 맞추기
 
-
-# #데이터 스케일링
-# scaler1=StandardScaler()
-# scaler1.fit(samsung_x)
-# samsung_x=scaler1.transform(samsung_x)
-
-# scaler2=StandardScaler()
-# scaler2.fit(bit_x)
-# bit_x=scaler2.transform(bit_x)
-
-# scaler3=StandardScaler()
-# scaler3.fit(gold_x)
-# gold_x=scaler3.transform(gold_x)
-
-# scaler4=MinMaxScaler()
-# scaler4.fit(kosdak_x)
-# kosdak_x=scaler4.transform(kosdak_x)
-
-# x 데이터 다섯개씩 자르기
-size=5
-# samsung_x=split_data(samsung_x, size)
-# bit_x=split_data(bit_x, size)
-# gold_x=split_data(gold_x, size)
-# kosdak_x=split_data(kosdak_x, size)
 bit_x=bit_x[:samsung_x.shape[0],:]
 gold_x=gold_x[:samsung_x.shape[0],:]
 kosdak_x=kosdak_x[:samsung_x.shape[0],:]
 
 # y 데이터 추출
-samsung_y=samsung_y[size+1:, :]
+samsung_y=samsung_y[6:, :]
 
 print(samsung_x.shape)
 print(bit_x.shape)
@@ -112,9 +85,18 @@ print(kosdak_x.shape)
 # (626, 5)
 # (626, 6)
 # (626, 3)
-big=np.concatenate([samsung_x, bit_x, gold_x, kosdak_x], axis=1)
-print(big)
-print(big.shape)
+
+
+# 데이터 2차원으로 합치기
+big_x=np.concatenate([samsung_x, bit_x, gold_x, kosdak_x], axis=1)
+print(big_x.shape) #(626, 18)
+
+
+#데이터 스케일링
+scaler=StandardScaler()
+scaler.fit(big_x)
+big_x=scaler.transform(big_x)
+
 
 # # predict 데이터 추출
 # samsung_x_predict=samsung_x[-1]
