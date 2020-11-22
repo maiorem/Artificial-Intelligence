@@ -74,12 +74,12 @@ gold_x=gold_x[:samsung_x.shape[0],:]
 kosdak_x=kosdak_x[:samsung_x.shape[0],:]
 
 # y 데이터 추출
-samsung_y=samsung_y[6:, :]
+samsung_y=samsung_y[2:, :]
 
-print(samsung_x.shape)
-print(bit_x.shape)
-print(gold_x.shape)
-print(kosdak_x.shape)
+# print(samsung_x.shape)
+# print(bit_x.shape)
+# print(gold_x.shape)
+# print(kosdak_x.shape)
 
 # (626, 4)
 # (626, 5)
@@ -89,7 +89,7 @@ print(kosdak_x.shape)
 
 # 데이터 2차원으로 합치기
 big_x=np.concatenate([samsung_x, bit_x, gold_x, kosdak_x], axis=1)
-print(big_x.shape) #(626, 18)
+# print(big_x.shape) #(626, 18)
 
 
 #데이터 스케일링
@@ -98,125 +98,58 @@ scaler.fit(big_x)
 big_x=scaler.transform(big_x)
 
 
-# # predict 데이터 추출
-# samsung_x_predict=samsung_x[-1]
-# bit_x_predict=bit_x[-1]
-# gold_x_predict=gold_x[-1]
-# kosdak_x_predict=kosdak_x[-1]
+# predict 데이터 추출
+big_x_predict=big_x[-1]
+big_x=big_x[:-2, :]
 
-# samsung_x=samsung_x[:-2, :, :]
-# bit_x=bit_x[:-2, :, :]
-# gold_x=gold_x[:-2, :, :]
-# kosdak_x=kosdak_x[:-2, :, :]
+print(big_x.shape) #(624, 18)
+print(big_x_predict.shape) #(18,)
+print(samsung_y.shape) #(624, 1)
 
-# print(samsung_x.shape) # (620, 5, 4)
-# print(bit_x.shape) #(620, 5, 5)
-# print(gold_x.shape) #(620, 5, 6)
-# print(kosdak_x.shape) #(620, 5, 3)
-# print(samsung_y.shape) # (620, 1)
-
-# samsung_x=samsung_x.astype('float32')
-# samsung_y=samsung_y.astype('float32')
-# samsung_x_predict=samsung_x_predict.astype('float32')
-# bit_x=bit_x.astype('float32')
-# bit_x_predict=bit_x_predict.astype('float32')
-# gold_x=gold_x.astype('float32')
-# gold_x_predict=gold_x_predict.astype('float32')
-
-# np.save('./data/monday/samsung_x.npy', arr=samsung_x)
-# np.save('./data/monday/samsung_x_predict.npy', arr=samsung_x_predict)
-# np.save('./data/monday/samsung_y.npy', arr=samsung_y)
-# np.save('./data/monday/bit_x.npy', arr=bit_x)
-# np.save('./data/monday/bit_x_predict.npy', arr=bit_x_predict)
-# np.save('./data/monday/gold_x.npy', arr=gold_x)
-# np.save('./data/monday/gold_x_predict.npy', arr=gold_x_predict)
-# np.save('./data/monday/kosdak_x.npy', arr=kosdak_x)
-# np.save('./data/monday/kosdak_x_predict.npy', arr=kosdak_x_predict)
-
-# # train, test 분리
-# samsung_x_train, samsung_x_test, samsung_y_train, samsung_y_test=train_test_split(samsung_x, samsung_y, train_size=0.8)
-# bit_x_train, bit_x_test, gold_x_train, gold_x_test, kosdak_x_train, kosdak_x_test=train_test_split(bit_x, gold_x, kosdak_x, train_size=0.8)
+big_x=big_x.astype('float32')
+big_y=samsung_y.astype('float32')
+big_x_predict=big_x_predict.astype('float32')
 
 
-# samsung_x_predict=samsung_x_predict.reshape(1,5,4)
-# bit_x_predict=bit_x_predict.reshape(1,5,5)
-# gold_x_predict=gold_x_predict.reshape(1,5,6)
-# kosdak_x_predict=kosdak_x_predict.reshape(1,5,3)
+np.save('./data/monday/big_x.npy', arr=big_x)
+np.save('./data/monday/big_x_predict.npy', arr=big_x_predict)
+np.save('./data/monday/big_y.npy', arr=big_y)
+
+# train, test 분리
+big_x_train, big_x_test, big_y_train, big_y_test=train_test_split(big_x, big_y, train_size=0.8)
+
+
+big_x_predict=big_x_predict.reshape(1,18)
+
+
+######### 2. DNN 회귀모델
+model=Sequential()
+model.add(Dense(8000, input_shape=(18,)))
+model.add(Dense(5000))
+model.add(Dense(2000))
+model.add(Dense(1000))
+model.add(Dense(900))
+model.add(Dense(500))
+model.add(Dense(100))
+model.add(Dense(70))
+model.add(Dense(30))
+model.add(Dense(1))
+
+model.summary()
 
 
 
-# ######### 2. LSTM 회귀모델
-# samsung_input1=Input(shape=(5,4))
-# samsung_layer1=LSTM(52, activation='relu')(samsung_input1)
-# samsunt_layer1=Dropout(0.2)(samsung_layer1)
-# samsung_layer2=Dense(600, activation='relu')(samsung_layer1)
-# samsung_layer3=Dense(3000, activation='relu')(samsung_layer2)
-# samsunt_layer4=Dropout(0.2)(samsung_layer3)
-# samsung_layer5=Dense(200, activation='relu')(samsunt_layer4)
-# samsung_layer6=Dense(20, activation='relu')(samsung_layer5)
-# samsung_layer6=Dense(10, activation='relu')(samsung_layer6)
-# samsung_output=Dense(1)(samsung_layer6)
+#3. 컴파일, 훈련
+model.compile(loss='mse', optimizer='adam')
+es=EarlyStopping(monitor='val_loss',  patience=30, mode='auto')
+modelpath='./model/samsung-noensemble-{epoch:02d}-{val_loss:.4f}.hdf5'
+cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
+model.fit(big_x_train, big_y_train, epochs=10000, batch_size=100, validation_split=0.2, callbacks=[es, cp])
 
 
+#4. 평가, 예측
+loss=model.evaluate(big_x_test, big_y_test, batch_size=100)
+samsung_y_predict=model.predict(big_x_predict)
 
-# bit_input1=Input(shape=(5,5))
-# bit_layer1=LSTM(300, activation='relu')(bit_input1)
-# bit_layer2=Dense(1000,activation='relu')(bit_layer1)
-# bit_layer3=Dense(2000,activation='relu')(bit_layer2)
-# bit_layer4=Dense(500,activation='relu')(bit_layer3)
-# bit_layer5=Dense(200,activation='relu')(bit_layer4)
-# bit_layer6=Dense(100,activation='relu')(bit_layer5)
-# bit_layer7=Dense(50,activation='relu')(bit_layer6)
-# bit_output=Dense(1)(bit_layer7)
-
-# gold_input1=Input(shape=(5,6))
-# gold_layer1=LSTM(100, activation='relu')(gold_input1)
-# gold_layer2=Dense(2000,activation='relu')(gold_layer1)
-# gold_layer3=Dense(2000,activation='relu')(gold_layer2)
-# gold_layer4=Dense(700,activation='relu')(gold_layer3)
-# gold_layer5=Dense(200,activation='relu')(gold_layer4)
-# gold_layer6=Dense(100,activation='relu')(gold_layer5)
-# gold_layer7=Dense(50,activation='relu')(gold_layer6)
-# gold_output=Dense(1)(gold_layer7)
-
-
-# kosdak_input1=Input(shape=(5,3))
-# kosdak_layer1=LSTM(400, activation='relu')(kosdak_input1)
-# kosdak_layer2=Dense(900,activation='relu')(kosdak_layer1)
-# kosdak_layer3=Dense(1000,activation='relu')(kosdak_layer2)
-# kosdak_layer4=Dense(200,activation='relu')(kosdak_layer3)
-# kosdak_layer5=Dense(20,activation='relu')(kosdak_layer4)
-# kosdak_layer6=Dense(10,activation='relu')(kosdak_layer5)
-# kosdak_layer7=Dense(5,activation='relu')(kosdak_layer6)
-# kosdak_output=Dense(1)(bit_layer7)
-
-
-
-# merge1=concatenate([samsung_output, bit_output])
-
-# output1=Dense(5000)(merge1)
-# output2=Dense(3000)(output1)
-# output3=Dense(800)(output2)
-# output4=Dense(30)(output3)
-# output5=Dense(1)(output4)
-
-# model=Model(inputs=[samsung_input1, bit_input1, gold_input1, kosdak_input1], outputs=output5)
-
-# model.summary()
-
-
-
-# #3. 컴파일, 훈련
-# model.compile(loss='mse', optimizer='adam')
-# es=EarlyStopping(monitor='val_loss',  patience=30, mode='auto')
-# modelpath='./model/samsung-monday-{epoch:02d}-{val_loss:.4f}.hdf5'
-# cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
-# model.fit([samsung_x_train, bit_x_train, gold_x_train, kosdak_x_train], samsung_y_train, epochs=10000, batch_size=100, validation_split=0.2, callbacks=[es, cp])
-
-
-# #4. 평가, 예측
-# loss=model.evaluate([samsung_x_test, bit_x_test, gold_x_test, kosdak_x_test], samsung_y_test, batch_size=100)
-# samsung_y_predict=model.predict([samsung_x_predict, bit_x_predict, gold_x_predict, kosdak_x_predict])
-
-# print("loss : ", loss)
-# print("2020.11.23. 월요일 삼성전자 시가 :" , samsung_y_predict)
+print("loss : ", loss)
+print("2020.11.23. 월요일 삼성전자 시가 :" , samsung_y_predict)
