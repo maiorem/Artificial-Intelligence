@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.layers import Dense, Dropout, LSTM
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn. preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -25,7 +25,7 @@ kosdak=kosdak.sort_values(['일자'], ascending=['True'])
 # print(kosdak) # 시가 고가 저가 (float)
 
 #필요한 컬럼만
-samsung=samsung[['시가', '고가', '저가', '개인', '종가']]
+samsung=samsung[['시가', '고가', '저가', '종가']]
 bit=bit[['시가', '고가', '저가', '개인', '종가']]
 gold=gold[['시가', '고가', '저가', '종가', '거래량', '거래대금(백만)']]
 kosdak=kosdak[['시가', '저가', '고가']]
@@ -49,7 +49,7 @@ two_million=samsung[samsung['시가']>=2000000].index
 samsung.drop(two_million, inplace=True)
 
 
-samsung_x=samsung[['고가', '저가', '개인','종가']]
+samsung_x=samsung[['시가','고가', '저가', '종가']]
 samsung_y=samsung[['시가']]
 
 # 11월 20일 데이터 삭제
@@ -68,13 +68,11 @@ kosdak_x=kosdak.to_numpy()
 
 
 # 데이터 행 맞추기
-
 bit_x=bit_x[:samsung_x.shape[0],:]
 gold_x=gold_x[:samsung_x.shape[0],:]
 kosdak_x=kosdak_x[:samsung_x.shape[0],:]
 
-# y 데이터 추출
-samsung_y=samsung_y[2:, :]
+
 
 # print(samsung_x.shape)
 # print(bit_x.shape)
@@ -98,41 +96,54 @@ scaler.fit(big_x)
 big_x=scaler.transform(big_x)
 
 
+# x 데이터 다섯개씩 자르기
+def split_data(x, size) :
+    data=[]
+    for i in range(x.shape[0]-size+1) :
+        data.append(x[i:i+size,:])
+    return np.array(data)
+
+size=5
+big_x=split_data(big_x, size)
+
+# y 데이터 추출
+big_y=samsung_y[size+1:, :]
+
+
 # predict 데이터 추출
 big_x_predict=big_x[-1]
-big_x=big_x[:-2, :]
+big_x=big_x[:-2, :, :]
 
-print(big_x.shape) #(624, 18)
-print(big_x_predict.shape) #(18,)
-print(samsung_y.shape) #(624, 1)
+print(big_x.shape) #(620, 5, 18)
+print(big_x_predict.shape) #(5, 18)
+print(big_y.shape) #(620, 1)
 
 big_x=big_x.astype('float32')
-big_y=samsung_y.astype('float32')
-big_x_predict=big_x_predict.astype('float32')
+big_y=big_y.astype('float32')
+big_x_predict=big_x_predict.astype('float32').reshape(1, big_x_predict.shape[0], big_x_predict.shape[1])
 
 
-np.save('./data/monday/big_x.npy', arr=big_x)
-np.save('./data/monday/big_x_predict.npy', arr=big_x_predict)
-np.save('./data/monday/big_y.npy', arr=big_y)
+np.save('./data/monday/lstm_big_x.npy', arr=big_x)
+np.save('./data/monday/lstm_big_x_predict.npy', arr=big_x_predict)
+np.save('./data/monday/lstm_big_y.npy', arr=big_y)
 
 # train, test 분리
 big_x_train, big_x_test, big_y_train, big_y_test=train_test_split(big_x, big_y, train_size=0.8)
 
 
-big_x_predict=big_x_predict.reshape(1,18)
-
-
-######### 2. DNN 회귀모델
+######### 2. LSTM 회귀모델
 model=Sequential()
-model.add(Dense(8000, input_shape=(18,)))
-model.add(Dense(5000))
-model.add(Dense(2000))
-model.add(Dense(1000))
-model.add(Dense(900))
-model.add(Dense(500))
-model.add(Dense(100))
-model.add(Dense(70))
-model.add(Dense(30))
+model.add(LSTM(80, activation='relu', input_shape=(5, 18)))
+model.add(Dropout(0.1))
+model.add(Dense(5000, activation='relu'))
+model.add(Dropout(0.1))
+model.add(Dense(2000, activation='relu'))
+model.add(Dense(1000, activation='relu'))
+model.add(Dense(900, activation='relu'))
+model.add(Dense(500, activation='relu'))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(70, activation='relu'))
+model.add(Dense(30, activation='relu'))
 model.add(Dense(1))
 
 model.summary()
@@ -141,8 +152,8 @@ model.summary()
 
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
-es=EarlyStopping(monitor='val_loss',  patience=30, mode='auto')
-modelpath='./model/samsung-noensemble-{epoch:02d}-{val_loss:.4f}.hdf5'
+es=EarlyStopping(monitor='val_loss',  patience=100, mode='auto')
+modelpath='./model/samsung-noensemble-lstm-{epoch:02d}-{val_loss:.4f}.hdf5'
 cp=ModelCheckpoint(filepath=modelpath, monitor='val_loss', save_best_only=True, mode='auto')
 model.fit(big_x_train, big_y_train, epochs=10000, batch_size=100, validation_split=0.2, callbacks=[es, cp])
 
