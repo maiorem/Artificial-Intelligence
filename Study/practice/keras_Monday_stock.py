@@ -158,7 +158,7 @@ kosdak_x_predict=kosdak_x_predict.reshape(1,5,3)
 
 ######### 2. LSTM 회귀모델
 samsung_input1=Input(shape=(5,4))
-samsung_layer1=LSTM(52, activation='relu')(samsung_input1)
+samsung_layer1=LSTM(100, activation='relu')(samsung_input1)
 samsunt_layer1=Dropout(0.2)(samsung_layer1)
 samsung_layer2=Dense(600, activation='relu')(samsung_layer1)
 samsung_layer3=Dense(3000, activation='relu')(samsung_layer2)
@@ -171,20 +171,16 @@ samsung_output=Dense(1)(samsung_layer6)
 
 
 bit_input1=Input(shape=(5,5))
-bit_layer1=LSTM(300, activation='relu')(bit_input1)
-bit_layer2=Dense(1000,activation='relu')(bit_layer1)
-bit_layer3=Dense(2000,activation='relu')(bit_layer2)
-bit_layer4=Dense(500,activation='relu')(bit_layer3)
+bit_layer1=LSTM(30, activation='relu')(bit_input1)
+bit_layer4=Dense(500,activation='relu')(bit_layer1)
 bit_layer5=Dense(200,activation='relu')(bit_layer4)
 bit_layer6=Dense(100,activation='relu')(bit_layer5)
 bit_layer7=Dense(50,activation='relu')(bit_layer6)
 bit_output=Dense(1)(bit_layer7)
 
 gold_input1=Input(shape=(5,6))
-gold_layer1=LSTM(100, activation='relu')(gold_input1)
-gold_layer2=Dense(2000,activation='relu')(gold_layer1)
-gold_layer3=Dense(2000,activation='relu')(gold_layer2)
-gold_layer4=Dense(700,activation='relu')(gold_layer3)
+gold_layer1=LSTM(20, activation='relu')(gold_input1)
+gold_layer4=Dense(700,activation='relu')(gold_layer1)
 gold_layer5=Dense(200,activation='relu')(gold_layer4)
 gold_layer6=Dense(100,activation='relu')(gold_layer5)
 gold_layer7=Dense(50,activation='relu')(gold_layer6)
@@ -192,10 +188,9 @@ gold_output=Dense(1)(gold_layer7)
 
 
 kosdak_input1=Input(shape=(5,3))
-kosdak_layer1=LSTM(400, activation='relu')(kosdak_input1)
+kosdak_layer1=LSTM(40, activation='relu')(kosdak_input1)
 kosdak_layer2=Dense(900,activation='relu')(kosdak_layer1)
-kosdak_layer3=Dense(1000,activation='relu')(kosdak_layer2)
-kosdak_layer4=Dense(200,activation='relu')(kosdak_layer3)
+kosdak_layer4=Dense(200,activation='relu')(kosdak_layer2)
 kosdak_layer5=Dense(20,activation='relu')(kosdak_layer4)
 kosdak_layer6=Dense(10,activation='relu')(kosdak_layer5)
 kosdak_layer7=Dense(5,activation='relu')(kosdak_layer6)
@@ -203,7 +198,7 @@ kosdak_output=Dense(1)(bit_layer7)
 
 
 
-merge1=concatenate([samsung_output, bit_output])
+merge1=concatenate([samsung_output, bit_output, gold_output, kosdak_output])
 
 output1=Dense(5000)(merge1)
 output2=Dense(3000)(output1)

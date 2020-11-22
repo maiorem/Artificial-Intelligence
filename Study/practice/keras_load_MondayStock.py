@@ -25,7 +25,7 @@ kosdak_x_predict=kosdak_x_predict.reshape(1,5,3)
 
 
 ######### 2. LSTM 회귀모델
-model = load_model('./model/samsung-monday-81-1019001.1875.hdf5')
+model = load_model('./model/samsung-monday-210-1155323.5000.hdf5')
 
 #4. 평가, 예측
 loss=model.evaluate([samsung_x_test, bit_x_test, gold_x_test, kosdak_x_test], samsung_y_test, batch_size=100)
