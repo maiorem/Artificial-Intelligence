@@ -10,7 +10,6 @@ from tensorflow.keras.layers import Dense, Dropout, Input, LSTM, Conv1D, MaxPool
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn. preprocessing import StandardScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split
-from keras62_split2 import split_data
 
 samsung=pd.read_csv('./data/csv/삼성전자 1120.csv', engine='python', header=0, index_col=0, sep=',')
 bit=pd.read_csv('./data/csv/비트컴퓨터 1120.csv',  engine='python', header=0, index_col=0, sep=',')
@@ -90,6 +89,12 @@ scaler4.fit(kosdak_x)
 kosdak_x=scaler4.transform(kosdak_x)
 
 # x 데이터 다섯개씩 자르기
+def split_data(x, size) :
+    data=[]
+    for i in range(x.shape[0]-size+1) :
+        data.append(x[i:i+size,:])
+    return np.array(data)
+
 size=5
 samsung_x=split_data(samsung_x, size)
 bit_x=split_data(bit_x, size)
