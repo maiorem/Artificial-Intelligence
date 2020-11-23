@@ -17,11 +17,11 @@ x_train=scale.transform(x_train)
 x_test=scale.transform(x_test)
 
 # 2. 모델
-# model=LinearSVC()
+model=LinearSVC()
 # model=SVC()
 # model=KNeighborsClassifier()
 # model=KNeighborsRegressor()
-model=RandomForestClassifier()
+# model=RandomForestClassifier()
 # model=RandomForestRegressor()
 
 # 3. 훈련
@@ -34,11 +34,11 @@ score=model.score(x_test, y_test)
 # 회귀모델일 경우 r2_score와 비교할 것
 
 y_predict=model.predict(x_test)
-acc=accuracy_score(y_test, y_predict)
+# acc=accuracy_score(y_test, y_predict)
 r2=r2_score(y_test, y_predict)
 
 print('score :', score)
-print('acc :', acc)
+# print('acc :', acc)
 print('r2 : ', r2)
 
 print(y_test[:10], '의 예측 결과 ', y_predict[:10])
@@ -46,24 +46,21 @@ print(y_test[:10], '의 예측 결과 ', y_predict[:10])
 '''
 LinearSVC()
 score : 0.011235955056179775
-acc : 0.011235955056179775
+r2 : 0.011235955056179775
 [235. 150. 124.  78. 168. 253.  97. 102. 249. 142.] 의 예측 결과  [ 91. 232. 281. 134.  97.  69.  53. 109. 230. 101.]
 
 SVC()
 score : 0.0
-acc : 0.0
 r2 :  -0.0833765078750015
 [235. 150. 124.  78. 168. 253.  97. 102. 249. 142.] 의 예측 결과  [ 91. 220.  91.  90.  90.  91.  53.  90. 220. 200.]
 
 KNeighborsClassifier()
 score : 0.0
-acc : 0.0
 r2 :  -0.5564141962639386
 [235. 150. 124.  78. 168. 253.  97. 102. 249. 142.] 의 예측 결과  [ 91. 129.  77.  64.  60.  63.  42.  53.  67.  74.]
 
 RandomForestClassifier()
 score : 0.02247191011235955
-acc : 0.02247191011235955
 r2 :  -0.06879755740443882
 [235. 150. 124.  78. 168. 253.  97. 102. 249. 142.] 의 예측 결과  [ 91. 232. 156.  95.  53. 138.  83. 214.  67. 158.]
 
