@@ -29,6 +29,9 @@
  * [저장한 모델 불러와서 커스텀하기](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras31_load.py)         
  * [모델링 시각화-Matplotlib](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras32_hist2_graph.py)                
  * [모델링 시각화-Tensorboard](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras33_tensorboard.py)            
+ * [모델과 가중치를 함께 저장하기 : fit 이후에 세이브](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras50_1_save_model.py)         
+ * [가중치만 저장하기 : save_weights](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras51_1_save_weights.py)        
+ * [**모델 체크포인트** : 이전보다 최적의 값이 나올 때마다 저장](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras48_ModelCheckPoint.py)         
 
 ### 3. 선형회귀(Linear Regression) 
 ![linear](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Normdist_regression.png/300px-Normdist_regression.png)     
@@ -126,10 +129,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  사용 기법 : **MaxPooling2D** => 이미지를 중복없이 잘라서 가장 큰 feature를 추출함 / **Flatten** => 다차원으로 구성된 데이터를 일렬로 쭉 펼쳐 1차원으로 만듦          
 
    
-### 4. 다중 분류(Multiple Classification)    
-* mnist를 활용한 분류 모델 구현하기        
- mnist란? 훈련용 데이터셋            
- [mnist로 데이터 분류 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist1_imshow.py)           
+### 4. 다중 분류(Multiple Classification)         
 * One Hot Encoding       
    => 데이터를 숫자로 줬을 때, feature의 중요도와 별개로 숫자가 더 큰 값을 컴퓨터가 무조건 더 크다고 판단하는 수가 있다. 그럴 때, True면 1, False면 0으로 값을 줘서 사용자가 원하는 방식으로 컴퓨터가 데이터를 읽도록 출력값을 인코딩 하는 기법 중 하나를 One Hot Encoding이라고 함. 인코딩함으로써 인덱스가 1에 해당하는 분류값을 반환한다. 당연히 y값을 인코딩한다.        
    다중 분류의 몇가지 규칙      
@@ -140,6 +140,18 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
    categorical_crossentropy : 다중분류손실함수. 출력값이 one-hot-encoding 된 결과로 나오므로 y값은 무조건 one-hot encoding해서 넣어줘야 함.          
    [CNN 다중 분류 모델](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras36_mnist2_cnn.py)         
   
+### 5. 이진 분류(Binary Classification)      
+ * 다중분류가 여러가지 카테고리를 분류하는 것이라면 이진분류는 0이냐 1이냐, 둘 중 하나를 고르는 것이다.       
+ * 활성화 함수 : **sigmoid**         
+ * loss 함수는 **binary_crossentropy**      
+ 예시 : [breast-cancer 데이터셋](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras46_cancer_1_dnn.py)           
+ 
+ 
+## 머신러닝
+
+
+
+ 
   
  
  
