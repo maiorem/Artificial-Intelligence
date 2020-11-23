@@ -8,6 +8,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, r2_score
 
 # 1. 데이터
+#dataset=load_wine()
+#feature_name=dataset.feature_names
+#print(feature_name)
+#['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols', 'flavanoids', 'nonflavanoid_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'od280/od315_of_diluted_wines', 'proline']
 x, y=load_wine(return_X_y=True)
 # print(y) # 분류
 x_train, x_test, y_train, y_test=train_test_split(x, y, random_state=66, train_size=0.8, shuffle=True)
