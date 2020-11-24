@@ -21,14 +21,14 @@ x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2, random_st
 
 parameters= [
     {'n_estimators' : [100,200]},
-    {'max_depth' : [6,8,10,12]},
-    {'min_samples_leaf' : [3,5,7,10]},
+    {'max_depth' : [6,8,10,12, 20]},
+    {'min_samples_leaf' : [3,5,7,10, 15]},
     {'min_samples_split' : [2,3,5,10]},
     {'n_jobs' : [-1]}
 ] #15번
 
 #2. 모델
-kfold=KFold(n_splits=5, shuffle=True) # 5번
+kfold=KFold(n_splits=15, shuffle=True) # 5번
 model=GridSearchCV(RandomForestClassifier(), parameters, cv=kfold) # 총 75번 훈련
 
 
@@ -41,6 +41,28 @@ y_predict=model.predict(x_test)
 print('최종정답률 : ', accuracy_score(y_test, y_predict))
 
 '''
+RandomForestClassifier parameter =>
+n_estimators : 생성할 의사결정 나무 개수 
+max_features : 의사결정나무 만들 시, 사용하는 feature 개수, default는 auto. 전체 feature 갯수의 제곱근.
+min_samples_split : 노드를 분할하기 위한 최소한의 샘플 데이터수
+min_samples_leaf : 리프노드가 되기 위해 필요한 최소한의 샘플 데이터수
+max_depth : 트리의 최대 깊이
+max_leaf_nodes : 리프노드의 최대 개수
+
+
+n_splits=3 => 45번 훈련
+최적의 매개변수 :  RandomForestClassifier(max_depth=10)
+최종정답률 :  0.9736842105263158
+
+n_splits=5 => 75번 훈련
 최적의 매개변수 :  RandomForestClassifier(min_samples_split=5)
 최종정답률 :  0.9649122807017544
+최적의 매개변수 :  RandomForestClassifier(min_samples_split=3)
+최종정답률 :  0.9649122807017544
+최적의 매개변수 :  RandomForestClassifier(max_depth=8)
+최종정답률 :  0.9736842105263158
+
+n_splits=10 => 150번 훈련
+최적의 매개변수 :  RandomForestClassifier(max_depth=8)
+최종정답률 :  0.956140350877193
 '''
