@@ -172,7 +172,14 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 [Random Search](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m15_randomSearch5.py)            
  
 #### Pipeline
-
+ * 데이터 스케일링을 위한 스케일러와 모델을 연결한다.         
+ => 스케일링을 cv와 함께 하면 training data를 스케일링 하는 과정 중에 교차된 검증 데이터가 중복되어 과적합이 될 수 있으므로 파이프라인과 cv 처리를 할 모델 변수는 구분하여 처리한다.        
+ [파이프라인 기본 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m16_pipeline.py)             
+ [파이프라인과 랜덤서치를 함께 사용한 경우](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m16_pipeline2.py)              
+ 
+ * make_pipeline과 Pipeline은 파라미터가 다르므로 구분할 것!       
+ => make_pipeline() : 스케일러와 모델이 별다른 이름 표기 없이 들어감. 네이밍은 자동으로 처리된다.       
+ => Pipeline() : 파라미터로 스케일러와 모델의 이름을 명시해줄 수 있음.         
 
 #### Feature-Importances
 
