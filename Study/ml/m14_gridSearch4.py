@@ -26,7 +26,7 @@ parameters= [
 ] #256번
 
 #2. 모델
-kfold=KFold(n_splits=3, shuffle=True) # 5번
+kfold=KFold(n_splits=5, shuffle=True) # 5번
 model=GridSearchCV(RandomForestRegressor(), parameters, cv=kfold) # 총 1280번 훈련
 
 
