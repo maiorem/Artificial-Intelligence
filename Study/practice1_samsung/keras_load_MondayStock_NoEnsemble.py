@@ -12,7 +12,7 @@ big_y=np.load('./data/monday/lstm_big_y.npy')
 big_x_train, big_x_test, big_y_train, big_y_test=train_test_split(big_x, big_y, train_size=0.8)
 
 
-######### 2. DNN 회귀모델
+######### 2. LSTM 회귀모델
 model = load_model('./model/samsung-noensemble-lstm-270-1255467.1250.hdf5')
 
 
