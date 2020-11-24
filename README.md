@@ -161,8 +161,9 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  * 기존 validation data의 문제 : 해당 validation data가 모든 데이터를 대표할 수 있을까?        
  => Cross-validation(교차검증) : train 데이터를 원하는 만큼 split하여 training과 교차로 검증하여 모든 train 데이터를 검사할 수 있도록 함.         
 
-* KFold() : 분할 파라미터를 설정하는 함수.           
-* cross_val_score() : 파라미터로 model, x train data, y train data, cv(분할 파라미터)를 받아 교차검증을 수행하는 함수.         [교차검증 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m12_kfold.py)            
+ * KFold() : 분할 파라미터를 설정하는 함수.           
+ * cross_val_score() : 파라미터로 model, x train data, y train data, cv(분할 파라미터)를 받아 교차검증을 수행하는 함수.         
+[교차검증 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m12_kfold.py)            
 
 #### GridSearch AND RandomSearch
  * GridSearchCV : 파라미터를 전부 모아 모델 훈련을 반복하여 가장 최적의 파라미터를 추출함.            
