@@ -18,10 +18,10 @@ y=iris.iloc[:, 4]
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2, random_state=66)
 
 allAlgorithms=all_estimators(type_filter='classifier')
+kfold=KFold(n_splits=10, shuffle=True)
 
 for (name, algorithm) in allAlgorithms :
     try :
-        kfold=KFold(n_splits=10, shuffle=True)
         model=algorithm()
         scores=cross_val_score(model, x_train, y_train, cv=kfold)
         print(name, '의 정답률 : ', scores)
