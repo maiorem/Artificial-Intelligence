@@ -1,4 +1,4 @@
-# 앙상블 없이 하나의 데이터로 합쳐서 DNN 사용하기
+# 앙상블 없이 하나의 데이터로 합쳐서 LSTM 사용하기
 
 import numpy as np
 import pandas as pd
