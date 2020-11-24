@@ -156,7 +156,8 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 [머신러닝의 분류모델들](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m11_selectModel.py)          
 [머신러닝의 회귀모델들](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m11_selectModel2.py)              
 
-### Cross-Validation (CV)          
+### 머신러닝의 하이퍼 파라미터 튜닝
+## Cross-Validation (CV)          
  * 기존 validation data의 문제 : 해당 validation data가 모든 데이터를 대표할 수 있을까?        
  => Cross-validation(교차검증) : train 데이터를 원하는 만큼 split하여 training과 교차로 검증하여 모든 train 데이터를 검사할 수 있도록 함.         
 
@@ -164,13 +165,16 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
 * cross_val_score() : 파라미터로 model, x train data, y train data, cv(분할 파라미터)를 받아 교차검증을 수행하는 함수.         
 [교차검증 예시](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m12_kfold.py)            
 
-### GridSearch AND RandomSearch
+## GridSearch AND RandomSearch
+ * GridSearchCV : 파라미터를 전부 모아 모델 훈련을 반복하여 가장 최적의 파라미터를 추출함.            
+ * RandomSearchCV : GridSearch가 모든 파라미터를 반복하면서 시간이 오래 걸리는 문제를 해결하기 위해 파라미터 일부를 랜덤으로 뽑아 반복 훈련시킴.            
+ [Grid Search](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m14_gridSearch5.py)           
+ [Random Search](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m15_randomSearch5.py)            
+ 
+## Pipeline
 
 
-### Pipeline
-
-
-### Feature-Importances
+## Feature-Importances
 
  
   
