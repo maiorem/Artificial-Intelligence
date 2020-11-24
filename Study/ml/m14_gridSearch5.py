@@ -26,7 +26,7 @@ parameters= [
 
 #2. 모델
 kfold=KFold(n_splits=5, shuffle=True) # 5번
-model=GridSearchCV(RandomForestClassifier(), parameters, cv=kfold) # 총 640번 훈련
+model=GridSearchCV(RandomForestClassifier(), parameters, cv=kfold, verbose=2) # 총 640번 훈련
 
 
 #3. 훈련
@@ -38,6 +38,6 @@ y_predict=model.predict(x_test)
 print('최종정답률 : ', accuracy_score(y_test, y_predict))
 
 '''
-최적의 매개변수 :  RandomForestClassifier(max_depth=10, min_samples_leaf=3, n_jobs=-1)
-최종정답률 :  0.9444444444444444
+최적의 매개변수 :  RandomForestClassifier(max_depth=6, min_samples_leaf=3, n_jobs=-1)
+최종정답률 :  1.0
 '''
