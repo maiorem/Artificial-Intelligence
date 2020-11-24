@@ -147,7 +147,7 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  예시 : [breast-cancer 데이터셋](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras46_cancer_1_dnn.py)           
  
  
-## 머신러닝 : 사이킷 기초
+## 머신러닝 : 사이킷런 기초
 ### XOR 게이트 : 인공지능의 두번째 겨울
 => 머신러닝으로 구현되는 인공지능이 AND와 OR의 데이터는 학습할 수 있지만, 같은 수는 0, 다른 수는 1로 출력하는 XOR의 문제의 경우 제대로 풀어내지 못하는 문제가 발생.        
 (현대의 딥러닝의 경우, 레이어를 쌓아 연산을 늘리면 빠르게 해결이 가능하다)          
