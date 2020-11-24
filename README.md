@@ -3,7 +3,7 @@
 
 <hr />
 
-## 케라스 기초
+## 딥러닝 : 케라스 기초
 ### 1. 모델링의 순서
 1. 데이터 (정제된 데이터: x, y)     
 2. 모델 구성    
@@ -147,9 +147,25 @@ validation_split => 훈련 데이터에서 검증 데이터를 잘라서 사용
  예시 : [breast-cancer 데이터셋](https://github.com/maiorem/bit_seoul/blob/main/Study/keras/keras46_cancer_1_dnn.py)           
  
  
-## 머신러닝
+## 머신러닝 : 사이킷 기초
+### XOR 게이트 : 인공지능의 두번째 겨울
+=> 머신러닝으로 구현되는 인공지능이 AND와 OR의 데이터는 학습할 수 있지만, 같은 수는 0, 다른 수는 1로 출력하는 XOR의 문제의 경우 제대로 풀어내지 못하는 문제가 발생.        
+(현대의 딥러닝의 경우, 레이어를 쌓아 연산을 늘리면 빠르게 해결이 가능하다)          
+[머신러닝의 기본 모델(분류)](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m05_iris.py)            
+[머신러닝의 기본 모델(회귀)](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m07_boston.py)             
+[머신러닝의 분류모델들](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m11_selectModel.py)          
+[머신러닝의 회귀모델들](https://github.com/maiorem/bit_seoul/blob/main/Study/ml/m11_selectModel2.py)              
+
+### Cross-validation
 
 
+### GridSearch AND RandomSearch
+
+
+### Pipeline
+
+
+### Feature-Importances
 
  
   
