@@ -20,16 +20,16 @@ y=dataset.target
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2, random_state=66)
 
 parameters= [
-    {'n_estimators' : [100,200]},
-    {'max_depth' : [6,8,10,12, 20]},
-    {'min_samples_leaf' : [3,5,7,10, 15]},
-    {'min_samples_split' : [2,3,5,10]},
-    {'n_jobs' : [-1]}
-] #15번
+    {'n_estimators' : [100,200],
+    'max_depth' : [6,8,10,12],
+    'min_samples_leaf' : [3,5,7,10],
+    'min_samples_split' : [2,3,5,10],
+    'n_jobs' : [-1]}
+] #128번
 
 #2. 모델
-kfold=KFold(n_splits=15, shuffle=True) # 5번
-model=GridSearchCV(RandomForestClassifier(), parameters, cv=kfold) # 총 75번 훈련
+kfold=KFold(n_splits=3, shuffle=True) # 5번
+model=GridSearchCV(RandomForestClassifier(), parameters, cv=kfold) # 총 640번 훈련
 
 
 #3. 훈련
@@ -50,19 +50,17 @@ max_depth : 트리의 최대 깊이
 max_leaf_nodes : 리프노드의 최대 개수
 
 
-n_splits=3 => 45번 훈련
-최적의 매개변수 :  RandomForestClassifier(max_depth=10)
-최종정답률 :  0.9736842105263158
+n_splits=3 => 384번 훈련
+최적의 매개변수 :  RandomForestClassifier(max_depth=10, min_samples_leaf=3, min_samples_split=5,
+                       n_jobs=-1)
+최종정답률 :  0.956140350877193
 
-n_splits=5 => 75번 훈련
-최적의 매개변수 :  RandomForestClassifier(min_samples_split=5)
+n_splits=5 => 640번 훈련
+최적의 매개변수 :  RandomForestClassifier(max_depth=6, min_samples_leaf=3, n_jobs=-1)
 최종정답률 :  0.9649122807017544
-최적의 매개변수 :  RandomForestClassifier(min_samples_split=3)
-최종정답률 :  0.9649122807017544
-최적의 매개변수 :  RandomForestClassifier(max_depth=8)
-최종정답률 :  0.9736842105263158
 
-n_splits=10 => 150번 훈련
-최적의 매개변수 :  RandomForestClassifier(max_depth=8)
+n_splits=10 => 1280번 훈련
+최적의 매개변수 :  RandomForestClassifier(max_depth=8, min_samples_leaf=3, min_samples_split=3,
+                       n_jobs=-1)
 최종정답률 :  0.956140350877193
 '''
