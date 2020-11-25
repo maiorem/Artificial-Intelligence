@@ -15,25 +15,26 @@ y=dataset.target
 # print(x.shape, y.shape) #(506, 13) (506,)
 
 #PCA로 컬럼 걸러내기
-pca=PCA()
-pca.fit(x)
-cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
-# print(cumsum)
+# pca=PCA()
+# pca.fit(x)
+# cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
+# # print(cumsum)
 
-d=np.argmax(cumsum >= 0.95) + 1
-# print(cumsum>=0.95) 
-print(d) # 2
+# d=np.argmax(cumsum >= 1) + 1
+# # print(cumsum>=0.95) 
+# print(d) # 2 1
 
-pca1=PCA(n_components=d)
+pca1=PCA(n_components=1)
 x=pca1.fit_transform(x)
+print(x.shape)
 
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 
 
-scaler=MinMaxScaler()
-scaler.fit(x_train)
-x_train=scaler.transform(x_train)
-x_test=scaler.transform(x_test)
+# scaler=MinMaxScaler()
+# scaler.fit(x_train)
+# x_train=scaler.transform(x_train)
+# x_test=scaler.transform(x_test)
 
 
 # x_train=x_train.reshape(x_train.shape[0], x_train.shape[1],1)
@@ -42,7 +43,7 @@ x_test=scaler.transform(x_test)
 
 
 model=Sequential()
-model.add(Dense(80, activation='relu', input_shape=(d,)))
+model.add(Dense(80, activation='relu', input_shape=(x.shape[1],)))
 model.add(Dense(150, activation='relu'))
 model.add(Dropout(0.1))
 model.add(Dense(350, activation='relu'))
@@ -85,9 +86,13 @@ PCA X
 RMSE :  3.054935090533644
 R2 :  0.8877071672091482
 
-PCA
+PCA 0.95
 RMSE :  7.592087524656271
 R2 :  0.35370428821063726
+
+PCA 1
+RMSE :  8.673563154396676
+R2 :  0.2461104118855385
 '''
 
 

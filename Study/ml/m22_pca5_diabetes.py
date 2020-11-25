@@ -19,9 +19,9 @@ pca.fit(x)
 cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
 # print(cumsum)
 
-d=np.argmax(cumsum >= 0.95) + 1
+d=np.argmax(cumsum >= 1) + 1
 # print(cumsum>=0.95) 
-print(d) # 
+print(d) # 2 1
 
 pca1=PCA(n_components=d)
 x=pca1.fit_transform(x)
@@ -78,7 +78,11 @@ PCA X
 RMSE :  56.698670343063974
 R2 :  0.5061393235426419
 
-PCA
+PCA 0.95
 RMSE :  61.98036335327336
 R2 :  0.3885816345957047
+
+PCA 1
+RMSE :  64.41967552615694
+R2 :  0.2880110517801241
 '''

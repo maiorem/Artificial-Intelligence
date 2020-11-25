@@ -24,13 +24,13 @@ pca.fit(x)
 cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
 # print(cumsum)
 
-d=np.argmax(cumsum >= 0.95) + 1
+d=np.argmax(cumsum >= 1) + 1
 # print(cumsum>=0.95) 
-print(d) # 217
+print(d) # 217 # 3072
 
 pca1=PCA(n_components=d)
 x=pca1.fit_transform(x)
-# print(x.shape) #(70000, 154)
+# print(x.shape) #(60000, 217)
 
 x_train=x[:50000, :]
 x_test=x[50000:, :]
@@ -83,7 +83,11 @@ acc : 0.40130001306533813
 실제값 : [3 8 8 0 6 6 1 6 3 1]
 예측값 : [6 9 8 0 4 6 5 2 3 9]
 
-PCA
+PCA 0.95
 loss :  3.6144258975982666
 accuracy :  0.5512999892234802
+
+PCA 1
+loss :  3.9221692085266113
+accuracy :  0.5145000219345093
 '''
