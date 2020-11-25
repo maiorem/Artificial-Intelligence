@@ -33,13 +33,13 @@ x=pca1.fit_transform(x)
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 
 
-scaler=MinMaxScaler()
-scaler.fit(x_train)
-x_train=scaler.transform(x_train)
-x_test=scaler.transform(x_test)
+# scaler=MinMaxScaler()
+# scaler.fit(x_train)
+# x_train=scaler.transform(x_train)
+# x_test=scaler.transform(x_test)
 
 model=Sequential()
-model.add(Dense(80, activation='relu', input_shape=(d,)))
+model.add(Dense(80, activation='relu', input_shape=(x.shape[1],)))
 model.add(Dense(350, activation='relu'))
 model.add(Dropout(0.1))
 model.add(Dense(550, activation='relu'))
@@ -52,7 +52,7 @@ model.add(Dense(1, activation='sigmoid'))
 
 
 model.summary()
-model.save("./save/keras46_dnn.h5")
+# model.save("./save/keras46_dnn.h5")
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard

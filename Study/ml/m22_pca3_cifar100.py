@@ -40,8 +40,8 @@ y_train=to_categorical(y_train)
 y_test=to_categorical(y_test)
 
 
-x_train=x_train.astype('float32')/255.
-x_test=x_test.astype('float32')/255.
+# x_train=x_train.astype('float32')/255.
+# x_test=x_test.astype('float32')/255.
 
 
 

@@ -14,27 +14,27 @@ y=dataset.target
 # print(x)
 # print(x.shape, y.shape) #(506, 13) (506,)
 
-#PCA로 컬럼 걸러내기
+# #PCA로 컬럼 걸러내기
 # pca=PCA()
 # pca.fit(x)
 # cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
 # # print(cumsum)
 
 # d=np.argmax(cumsum >= 1) + 1
-# # print(cumsum>=0.95) 
+# print(cumsum>=0.95) 
 # print(d) # 2 1
 
-pca1=PCA(n_components=1)
+pca1=PCA(n_components=0.95)
 x=pca1.fit_transform(x)
 print(x.shape)
 
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 
 
-# scaler=MinMaxScaler()
-# scaler.fit(x_train)
-# x_train=scaler.transform(x_train)
-# x_test=scaler.transform(x_test)
+scaler=MinMaxScaler()
+scaler.fit(x_train)
+x_train=scaler.transform(x_train)
+x_test=scaler.transform(x_test)
 
 
 # x_train=x_train.reshape(x_train.shape[0], x_train.shape[1],1)
