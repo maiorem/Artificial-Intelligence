@@ -12,6 +12,9 @@ x=dataset.data
 y=dataset.target
 # print(x)
 # print(x.shape, y.shape) #(442, 10) (442,)
+scaler=StandardScaler()
+scaler.fit(x)
+x=scaler.transform(x)
 
 #PCA로 컬럼 걸러내기
 pca=PCA()
@@ -21,7 +24,7 @@ cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
 
 d=np.argmax(cumsum >= 1) + 1
 # print(cumsum>=0.95) 
-print(d) # 2 1
+print(d) # 2 10
 
 pca1=PCA(n_components=d)
 x=pca1.fit_transform(x)
@@ -30,10 +33,7 @@ x=pca1.fit_transform(x)
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 
 
-scaler=StandardScaler()
-scaler.fit(x_train)
-x_train=scaler.transform(x_train)
-x_test=scaler.transform(x_test)
+
 
 
 # x_train=x_train.reshape(x_train.shape[0], x_train.shape[1],1)
@@ -42,7 +42,7 @@ x_test=scaler.transform(x_test)
 
 
 model=Sequential()
-model.add(Dense(128, activation='relu', input_shape=(d,)))
+model.add(Dense(128, activation='relu', input_shape=(x.shape[1],)))
 model.add(Dense(256, activation='relu'))
 model.add(Dense(64, activation='relu'))
 model.add(Dense(32, activation='relu'))
@@ -79,8 +79,8 @@ RMSE :  56.698670343063974
 R2 :  0.5061393235426419
 
 PCA 0.95
-RMSE :  61.98036335327336
-R2 :  0.3885816345957047
+RMSE :  7.417259224056391
+R2 :  0.4184948798003393
 
 PCA 1
 RMSE :  64.41967552615694

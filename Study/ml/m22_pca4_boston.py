@@ -2,7 +2,7 @@ import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_boston
 from sklearn.decomposition import PCA
@@ -13,28 +13,30 @@ x=dataset.data
 y=dataset.target
 # print(x)
 # print(x.shape, y.shape) #(506, 13) (506,)
+scaler=StandardScaler()
+scaler.fit(x)
+x=scaler.transform(x)
 
-# #PCA로 컬럼 걸러내기
-# pca=PCA()
-# pca.fit(x)
-# cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
-# # print(cumsum)
+#PCA로 컬럼 걸러내기
+pca=PCA()
+pca.fit(x)
+cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
+# print(cumsum)
 
-# d=np.argmax(cumsum >= 1) + 1
+d=np.argmax(cumsum >= 1) + 1
 # print(cumsum>=0.95) 
-# print(d) # 2 1
+print(d) # 2 1
 
-pca1=PCA(n_components=0.95)
+
+
+pca1=PCA(n_components=d)
 x=pca1.fit_transform(x)
-print(x.shape)
+print(x.shape) #9 #1
 
 x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 
 
-scaler=MinMaxScaler()
-scaler.fit(x_train)
-x_train=scaler.transform(x_train)
-x_test=scaler.transform(x_test)
+
 
 
 # x_train=x_train.reshape(x_train.shape[0], x_train.shape[1],1)
@@ -87,8 +89,8 @@ RMSE :  3.054935090533644
 R2 :  0.8877071672091482
 
 PCA 0.95
-RMSE :  7.592087524656271
-R2 :  0.35370428821063726
+RMSE :  5.405976284894092
+R2 :  0.5982252949572288
 
 PCA 1
 RMSE :  8.673563154396676

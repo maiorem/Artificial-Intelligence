@@ -14,6 +14,11 @@ y=dataset.target
 # print(x)
 # print(x.shape, y.shape) #(150, 4) (150,)
 
+scaler=StandardScaler()
+scaler.fit(x)
+x=scaler.transform(x)
+
+
 #PCA로 컬럼 걸러내기
 pca=PCA()
 pca.fit(x)
@@ -33,17 +38,12 @@ x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.2)
 y_train=to_categorical(y_train) 
 y_test=to_categorical(y_test)
 
-scaler=StandardScaler()
-scaler.fit(x_train)
-x_train=scaler.transform(x_train)
-x_test=scaler.transform(x_test)
-
 
 # x_train=x_train.reshape(x_train.shape[0], x_train.shape[1],1)
 # x_test=x_test.reshape(x_test.shape[0],x_test.shape[1],1)
 
 model=Sequential()
-model.add(Dense(80, activation='relu', input_shape=(d,)))
+model.add(Dense(80, activation='relu', input_shape=(x.shape[1],)))
 model.add(Dense(350, activation='relu'))
 model.add(Dropout(0.1))
 model.add(Dense(550, activation='relu'))
@@ -57,7 +57,6 @@ model.add(Dense(3, activation='softmax'))
 
 
 model.summary()
-model.save("./save/keras45_dnn.h5")
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, TensorBoard
@@ -90,10 +89,10 @@ accuracy :  0.8999999761581421
 2 0 0 1 0 2 0 2 1 1 2 1 1 2 1 1] 
  
 PCA 0.95
-loss :  2.963707447052002
-accuracy :  0.8999999761581421
-실제값 :  [2 0 1 1 0 0 2 0 1 1 1 1 2 2 1 0 0 1 0 1 2 0 1 2 0 0 1 2 0 2]
-예측값 :  [2 0 1 2 0 0 2 0 1 1 2 1 2 2 1 0 0 1 0 2 2 0 1 2 0 0 1 2 0 2]
+loss :  0.10601406544446945
+accuracy :  1.0
+실제값 :  [1 0 1 0 1 1 2 2 2 1 2 0 1 0 2 2 0 1 1 1 2 0 2 1 2 2 1 0 2 0]
+예측값 :  [1 0 1 0 1 1 2 2 2 1 2 0 1 0 2 2 0 1 1 1 2 0 2 1 2 2 1 0 2 0]
 
 PCA 1
 loss :  0.17372563481330872

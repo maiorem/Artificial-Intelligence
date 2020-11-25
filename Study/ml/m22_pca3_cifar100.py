@@ -11,19 +11,19 @@ from tensorflow.keras.layers import Dense
 
 x=np.append(x_train, x_test, axis=0)
 print(x.shape) #(60000, 32, 32, 3)
-x=x.reshape(x.shape[0], x.shape[1]*x.shape[2]*x.shape[3])
+x=x.reshape(x.shape[0], x.shape[1]*x.shape[2]*x.shape[3]).astype('float32')/255.
 
-#PCA로 컬럼 걸러내기
-pca=PCA()
-pca.fit(x)
-cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
-# print(cumsum)
+# #PCA로 컬럼 걸러내기
+# pca=PCA()
+# pca.fit(x)
+# cumsum=np.cumsum(pca.explained_variance_ratio_) #누적된 합 표시
+# # print(cumsum)
 
-d=np.argmax(cumsum >= 1) + 1
-# print(cumsum>=0.95) 
-print(d) # 202 #3072
+# d=np.argmax(cumsum >= 1) + 1
+# # print(cumsum>=0.95) 
+# print(d) # 202 #3072
 
-pca1=PCA(n_components=d)
+pca1=PCA(n_components=0.95)
 x=pca1.fit_transform(x)
 # print(x.shape) #(60000, 202)
 
@@ -47,7 +47,7 @@ y_test=to_categorical(y_test)
 
 #2. 모델
 model=Sequential()
-model.add(Dense(2000, activation='relu', input_shape=(d,)))
+model.add(Dense(2000, activation='relu', input_shape=(x.shape[1],)))
 model.add(Dense(4000, activation='relu'))
 model.add(Dense(3000, activation='relu'))
 model.add(Dense(2000, activation='relu'))
