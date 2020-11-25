@@ -7,7 +7,7 @@
 max_depth : 트리의 최대 깊이
 learning_rate : 학습 속도
 n_estimators : 트리의 갯수
-n_jobs : XGBoost를 실행하기 위한 병렬처리(쓰레드) 갯수
+n_jobs : XGBoost를 실행하기 위한 병렬처리(쓰레드) 갯수 (-1이면 전부 다 쓰겠다는 것)
 colsample_bylevel : 트리 레벨별로 훈련데이터의 변수를 샘플링해주는 비율
 colsample_bytree : 각 트리마다의 feature 샘플링 비율
 '''
@@ -15,6 +15,7 @@ from sklearn.datasets import load_boston
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier, XGBRegressor, plot_importance
+import matplotlib.pyplot as plt
 
 x, y=load_boston(return_X_y=True)
 
@@ -34,6 +35,9 @@ score=model.score(x_test, y_test)
 r2=r2_score(y_test, y_predict)
 print('score :', score)
 print('r2 :', r2)
+
+plot_importance(model)
+plt.show()
 
 # XGBoost
 # r2 : 0.8916325276205544
