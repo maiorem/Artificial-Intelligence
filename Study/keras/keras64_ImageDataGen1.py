@@ -30,7 +30,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 xy=train_datagen.flow_from_directory(
     './data/data2', #실제 이미지가 있는 폴더는 라벨이 됨. (ad/normal=0/1)
     target_size=(150,150),
-    batch_size=10,
+    batch_size=200,
     class_mode='binary' 
     #, save_to_dir='./data/data1_2/train' #변환한 파일을 저장
 ) # x와 y가 이미 갖춰진 데이터셋
@@ -42,8 +42,8 @@ np.save('./data/keras64_y.npy', arr=xy[0][1])
 # xy_train, xy_test=train_test_split(xy, train_size=0.8)
 
 
-# # print(xy_train[0][0].shape) #(10, 300, 300, 3) batch_size=10  # x
-# # print(xy_train[0][1].shape) #(10,)                           # y
+# # # print(xy_train[0][0].shape) #(10, 300, 300, 3) batch_size=10  # x
+# # # print(xy_train[0][1].shape) #(10,)                           # y
 
 
 
@@ -57,17 +57,30 @@ np.save('./data/keras64_y.npy', arr=xy[0][1])
 # model.add(Dense(1, activation='sigmoid'))
 
 
-# model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+# model.compile(loss='sparse_categorical_crossentopy', optimizer='adam', metrics=['accuracy'])
 
 # # train 셋에 이미 x와 y가 존재하므로 하나만 써주면 됨
-# model.fit_generator(
+# history=model.fit_generator(
 #     xy_train,
-#     steps_per_epoch=170,
+#     steps_per_epoch=17,
 #     epochs=20,
-#     validation_data=xy_test, validation_steps=4
+#     validation_data=xy_test, 
+#     validation_steps=4
 # )
 
-# loss, acc=model.evaluate(xy_test, steps=10)
+# acc=history.history['accuracy']
+# val_acc=history.history['val_accuracy']
+# loss=history.history['loss']
+# val_loss=history.history['val_loss']
 
-# print('loss:' ,loss)
-# print('acc :', acc)
+# plt.plot(acc)
+# plt.plot(val_acc)
+# plt.plot(loss)
+# plt.plot(val_loss)
+
+# plt.title('loss & acc')
+# plt.ylabel('loss, acc')
+# plt.xlabel('epoch')
+
+# plt.legend(['loss', 'val_loss', 'acc', 'val_acc'])
+# plt.show()

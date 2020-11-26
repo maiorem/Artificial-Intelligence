@@ -94,3 +94,5 @@ plt.xlabel('epoch')
 
 plt.legend(['loss', 'val_loss', 'acc', 'val_acc'])
 plt.show()
+
+# loss: 0.6934 - accuracy: 0.5000 - val_loss: 0.6883 - val_accuracy: 0.7500
