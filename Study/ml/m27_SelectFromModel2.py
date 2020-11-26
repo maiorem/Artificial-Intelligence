@@ -130,11 +130,10 @@ from sklearn.feature_selection import SelectFromModel
 
 # 3.
 x, y=load_boston(return_X_y=True)
-x_data1=x[:,:1]
-x_data2=x[:,2:3]
-x_data3=x[:,4:]
-x=np.concatenate([x_data1, x_data2, x_data3], axis=1)
-
+x_data1=x[:,:4]
+x_data2=x[:,5:]
+x=np.concatenate([x_data1, x_data2], axis=1)
+print(x.shape) #(506, 12)
 
 x_train, x_test, y_train, y_test=train_test_split(x, y, train_size=0.8)
 
@@ -169,14 +168,14 @@ print('feature_importance : ', XGBRegressor().fit(x_train, y_train).feature_impo
 
 '''
 최적의 매개변수 :  XGBRegressor(base_score=0.5, booster='gbtree', colsample_bylevel=0.6,
-             colsample_bynode=1, colsample_bytree=0.9, gamma=0, gpu_id=-1,
+             colsample_bynode=1, colsample_bytree=1, gamma=0, gpu_id=-1,
              importance_type='gain', interaction_constraints='',
-             learning_rate=0.1, max_delta_step=0, max_depth=6,
+             learning_rate=0.1, max_delta_step=0, max_depth=4,
              min_child_weight=1, missing=nan, monotone_constraints='()',
              n_estimators=110, n_jobs=0, num_parallel_tree=1, random_state=0,
              reg_alpha=0, reg_lambda=1, scale_pos_weight=1, subsample=1,
              tree_method='exact', validate_parameters=1, verbosity=None)
-최종정답률 :  0.9126837436319569
-feature_importance :  [0.00837083 0.02230982 0.08988928 0.25051165 0.00823489 0.03476926
- 0.00669573 0.03447052 0.05171977 0.01078209 0.48224622]
+최종정답률 :  0.9374078526207467
+feature_importance :  [0.03148203 0.00188427 0.01199806 0.00124609 0.23142023 0.01452872
+ 0.0400641  0.01199174 0.02808359 0.03617088 0.01023689 0.58089346]
 '''
