@@ -21,17 +21,28 @@ x_predict=x_predict.reshape(10, 28, 28, 1).astype('float32')/255.
 
 
 #2. 모델
-def build_model(drop=0.5, optimizer=Adam, node_num=128, activation='relu', lr=0.001, nude_num=256, strides=2, kernel_size=(2, 2), padding='same') :
+## Parameter Tuning
+## drop : Dropout
+## optimizer : adam, rmsprop, adadelta
+## node_num : 64, 128, 256, 512
+## activation : 'relu', 'selu', 'elu'
+## lr : learning_rate
+## strides = 1, 2, 3
+## kernel_size = (2, 2), (3, 3)
+## padding = 'same', 'valid'
+## epochs
+## batch_size
+def build_model(drop=0.5, optimizer=Adam, node_num=128, activation='relu', lr=0.001, strides=2, kernel_size=(2, 2), padding='same') :
     inputs=Input(shape=(28, 28, 1), name='input')
-    x=Conv2D(nude_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden1')(inputs)
+    x=Conv2D(node_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden1')(inputs)
     x=Activation(activation=activation)(x)
     x=Dropout(drop)(x)
 
-    x=Conv2D(nude_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden2')(x)
+    x=Conv2D(node_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden2')(x)
     x=Activation(activation=activation)(x)
     x=Dropout(drop)(x)
     
-    x=Conv2D(nude_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden3')(x)
+    x=Conv2D(node_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden3')(x)
     x=Activation(activation=activation)(x)
     x=Dropout(drop)(x)
 

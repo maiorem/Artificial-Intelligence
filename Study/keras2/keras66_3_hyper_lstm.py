@@ -21,6 +21,14 @@ x_predict=x_predict.reshape(10, 28*28, 1).astype('float32')/255.
 
 
 #2. 모델
+## Parameter Tuning
+## drop : Dropout
+## optimizer : adam, rmsprop, adadelta
+## node_num : 64, 128, 256, 512
+## activation : 'relu', 'selu', 'elu'
+## lr : learning_rate
+## epochs
+## batch_size
 def build_model(drop=0.5, optimizer=Adam, node_num=128, activation='relu', lr=0.001) :
     inputs=Input(shape=(28*28, 1), name='input')
     x=LSTM(node_num, name='hidden1')(inputs)
