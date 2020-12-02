@@ -1,7 +1,7 @@
 weight = 0.5
 input = 0.5
 goal_prediction = 0.8
-lr = 0.001
+lr = 100
 
 for iteration in range(1101) :
     prediction = input * weight
@@ -44,5 +44,9 @@ Error : 0.20249999999999996     Prediction : 1.25
 
 lr = 10
 Error : 19.802500000000002      Prediction : 5.25
+Error : 0.30250000000000005     Prediction : 0.25
+
+lr = 100
+Error : 2445.3025000000002      Prediction : 50.25
 Error : 0.30250000000000005     Prediction : 0.25
 '''
