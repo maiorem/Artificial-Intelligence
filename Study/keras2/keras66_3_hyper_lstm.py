@@ -49,10 +49,10 @@ def create_hyperparameter() :
 
 hyperparameters=create_hyperparameter()
 
-from tensorflow.keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor #그리드서치는 사이킷런 모델만 받을 수 있으므로 케라스모델을 사이킷런으로 랩핑하는 클래스 소환
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
-model=KerasClassifier(build_fn=build_model) #케라스 모델을 사이킷런 모델로 랩핑
+model=KerasClassifier(build_fn=build_model)
 
 search=RandomizedSearchCV(model, hyperparameters, cv=3)
 search.fit(x_train, y_train)

@@ -40,8 +40,7 @@ def create_hyperparameter() :
     epoch=[50, 100, 200]
     optimazers=['rmsprop', 'adam', 'adadelta']
     dropout=[0.1, 0.2, 0.3, 0.4, 0.5]
-    patience=[10, 20, 30, 40, 50]
-    return {"batch_size" : batches, "optimizer" : optimazers, "drop" : dropout, "epochs": epoch, "patience" : patience}
+    return {"batch_size" : batches, "optimizer" : optimazers, "drop" : dropout, "epochs": epoch}
 
 hyperparameters=create_hyperparameter()
 

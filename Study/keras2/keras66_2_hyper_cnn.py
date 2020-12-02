@@ -21,21 +21,25 @@ x_predict=x_predict.reshape(10, 28, 28, 1).astype('float32')/255.
 
 
 #2. 모델
-def build_model(drop=0.5, optimizer=Adam, node_num=128, activation='relu', lr=0.001) :
+def build_model(drop=0.5, optimizer=Adam, node_num=128, activation='relu', lr=0.001, nude_num=256, strides=2, kernel_size=(2, 2), padding='same') :
     inputs=Input(shape=(28, 28, 1), name='input')
-    x=Conv2D(512, (3, 3), activation='relu', name='hidden1')(inputs)
+    x=Conv2D(nude_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden1')(inputs)
     x=Activation(activation=activation)(x)
+    x=Dropout(drop)(x)
 
-    x=Conv2D(256, (3, 3),activation='relu', name='hidden2')(x)
+    x=Conv2D(nude_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden2')(x)
     x=Activation(activation=activation)(x)
+    x=Dropout(drop)(x)
     
-    x=Conv2D(128, (3, 3),activation='relu', name='hidden3')(x)
+    x=Conv2D(nude_num, kernel_size=kernel_size, strides=strides, padding=padding, name='hidden3')(x)
     x=Activation(activation=activation)(x)
+    x=Dropout(drop)(x)
 
     x=Flatten()(x)
     x=Dense(256, activation='relu')(x)
     x=Dropout(drop)(x)
     outputs=Dense(10, activation='softmax', name='outputs')(x)
+
     model=Model(inputs=inputs, outputs=outputs)
     model.compile(optimizer=optimizer(lr=lr), metrics=['acc'], loss='categorical_crossentropy')
     return model
@@ -48,14 +52,17 @@ def create_hyperparameter() :
     dropout=[0.1, 0.2, 0.3, 0.4, 0.5]
     lr=[0.001, 0.0001, 0.1]
     node_num=[64, 128, 256, 512]
-    return {"batch_size" : batches, "optimizer" : optimizers, "drop" : dropout, "epochs": epoch, "lr": lr, "node_num":node_num}
+    kernel = [(2,2), (3, 3)]
+    strides= [1, 2, 3]
+    padding=['same', 'valid']
+    return {"batch_size" : batches, "optimizer" : optimizers, "drop" : dropout, "epochs": epoch, "lr": lr, "node_num":node_num, "kernel_size" : kernel, "strides" : strides, "padding": padding}
 
 hyperparameters=create_hyperparameter()
 
-from tensorflow.keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor #그리드서치는 사이킷런 모델만 받을 수 있으므로 케라스모델을 사이킷런으로 랩핑하는 클래스 소환
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor 
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
-model=KerasClassifier(build_fn=build_model) #케라스 모델을 사이킷런 모델로 랩핑
+model=KerasClassifier(build_fn=build_model)
 
 search=RandomizedSearchCV(model, hyperparameters, cv=3)
 search.fit(x_train, y_train)
