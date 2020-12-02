@@ -2,8 +2,8 @@ from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Conv2D, LSTM, Input, Dropout
-from tensorflow.keras.layers import MaxPooling2D, Flatten
-
+from tensorflow.keras.layers import MaxPooling2D, Flatten, Activation
+from tensorflow.keras.optimizers import Adam, Adadelta, Adamax, Adagrad, RMSprop, SGD, Nadam
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -21,27 +21,31 @@ x_predict=x_predict.reshape(10, 28*28, 1).astype('float32')/255.
 
 
 #2. 모델
-def build_model(drop=0.5, optimizer='adam') :
+def build_model(drop=0.5, optimizer=Adam, node_num=128, activation='relu', lr=0.001) :
     inputs=Input(shape=(28*28, 1), name='input')
-    x=LSTM(512, activation='relu', name='hidden1')(inputs)
+    x=LSTM(node_num, name='hidden1')(inputs)
+    x=Activation(activation=activation)(x)
     x=Dropout(drop)(x)
-    x=Dense(256, activation='relu', name='hidden2')(x)
+    x=Dense(256, name='hidden2')(x)
+    x=Activation(activation=activation)(x)
     x=Dropout(drop)(x)
-    x=Dense(128, activation='relu', name='hidden3')(x)
+    x=Dense(128, name='hidden3')(x)
+    x=Activation(activation=activation)(x)
     x=Dropout(drop)(x)
     outputs=Dense(10, activation='softmax', name='outputs')(x)
     model=Model(inputs=inputs, outputs=outputs)
-    model.compile(optimizer=optimizer, metrics=['acc'], loss='categorical_crossentropy')
+    model.compile(optimizer=optimizer(lr=lr), metrics=['acc'], loss='categorical_crossentropy')
     return model
 
 
 def create_hyperparameter() :
     batches=[10, 20, 30, 40, 50]
-    epoch=[50, 100, 200]
-    optimazers=['rmsprop', 'adam', 'adadelta']
+    epoch=[20, 50, 100]
+    optimizers=[RMSprop, Adam, Adadelta]
     dropout=[0.1, 0.2, 0.3, 0.4, 0.5]
-    patience=[10, 20, 30, 40, 50]
-    return {"batch_size" : batches, "optimizer" : optimazers, "drop" : dropout, "epochs": epoch, "patience" : patience}
+    lr=[0.001, 0.0001, 0.1]
+    node_num=[64, 128, 256, 512]
+    return {"batch_size" : batches, "optimizer" : optimizers, "drop" : dropout, "epochs": epoch, "lr": lr, "node_num":node_num}
 
 hyperparameters=create_hyperparameter()
 
