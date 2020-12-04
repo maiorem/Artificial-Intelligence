@@ -54,3 +54,7 @@ y_predict=np.argmax(y_predict, axis=1) #One hot encoding의 decoding은 numpy의
 y_actually=np.argmax(y_test[:10, :], axis=1)
 print('실제값 : ', y_actually)
 print('예측값 : ', y_predict)
+
+'''
+ValueError: When setting `include_top=True` and loading `imagenet` weights, `input_shape` should be (224, 224, 3).
+'''
