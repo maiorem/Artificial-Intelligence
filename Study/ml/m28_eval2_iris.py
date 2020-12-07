@@ -9,10 +9,10 @@ x, y=load_iris(return_X_y=True)
 x_train, x_test, y_train, y_test=train_test_split(x, y, train_size=0.8, random_state=77)
 
 #2. 모델
-model=XGBClassifier(n_estimators=1000, learning_rate=0.1)
+model=XGBClassifier(n_estimators=100, learning_rate=0.001)
 
 #3. 훈련
-model.fit(x_train, y_train, verbose=True, eval_metric='mlogloss', eval_set=[(x_train, y_train), (x_test, y_test)])
+model.fit(x_train, y_train, verbose=True, eval_metric='merror', eval_set=[(x_train, y_train), (x_test, y_test)])
 
 # eva_metrics 대표 params => rmse, mae, logloss, error, auc
 

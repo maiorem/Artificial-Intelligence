@@ -25,3 +25,6 @@ y_predict=model.predict(x_test)
 
 r2=r2_score(y_test, y_predict)
 print("R2 :", r2)
+
+score=model.score(x_test, y_test)
+print("score : ", score)
