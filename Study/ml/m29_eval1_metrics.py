@@ -9,7 +9,7 @@ x, y=load_boston(return_X_y=True)
 x_train, x_test, y_train, y_test=train_test_split(x, y, train_size=0.8, random_state=77)
 
 #2. 모델
-model=XGBRegressor(n_estimators=1000, learning_rate=0.1)
+model=XGBRegressor(n_estimators=2000, learning_rate=0.01)
 # model=XGBRegressor()
 
 #3. 훈련
