@@ -23,12 +23,13 @@ from tensorflow.keras.layers import Dense, Input, Conv2D, Flatten, MaxPooling2D
 
 def autoencoder(hidden_layer_size) :
     model=Sequential()
-    model.add(Conv2D(filters=hidden_layer_size, kernel_size=2, padding='valid', input_shape=(x_train.shape[1], x_train.shape[2], x_train.shape[3]), activation='relu'))
+    model.add(Conv2D(filters=hidden_layer_size, kernel_size=2, padding='same', input_shape=(x_train.shape[1], x_train.shape[2], x_train.shape[3]), activation='relu'))
+    model.add(Conv2D(filters=2, kernel_size=2, padding='same', activation='relu'))
     model.add(Flatten())
     model.add(Dense(units=x_train.shape[1]*x_train.shape[2]*x_train.shape[3], activation='sigmoid'))
     return model
 
-model=autoencoder(hidden_layer_size=2)
+model=autoencoder(hidden_layer_size=256)
 
 # model.compile(optimizer='adam', loss='binary_crossentropy')
 model.compile(optimizer='adam', loss='mse')
