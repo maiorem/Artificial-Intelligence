@@ -1,5 +1,5 @@
 # Artificial-Intelligence
-인공지능 개발자 개념 정리
+인공지능 개발 개념 정리
 
 <hr />
 
