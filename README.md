@@ -1,4 +1,4 @@
-# bit_seoul
+# Artificial-Intelligence
 인공지능 개발자 과정
 
 <hr />
